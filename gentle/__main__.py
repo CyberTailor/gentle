@@ -98,6 +98,7 @@ def main() -> None:
             logger.info("Starting %s", cls.__name__)
             generator = cls(srcdir)
             generator.update_metadata_xml(mxml)
+    mxml.dump()
 
 
 if __name__ == "__main__":

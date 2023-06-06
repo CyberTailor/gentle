@@ -61,5 +61,3 @@ class ShardsGenerator(AbstractGenerator):
             logger.info("Found repository: %s", repo)
             if (remote_id := extract_remote_id(repo)) is not None:
                 mxml.add_upstream_remote_id(remote_id)
-
-        mxml.dump()
