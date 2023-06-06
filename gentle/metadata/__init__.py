@@ -15,8 +15,8 @@ logger = logging.getLogger("metadata")
 
 @dataclass
 class Person:
-    name: str = field(compare=False)
-    email: str
+    name: str = field(default="", compare=False)
+    email: str = ""
 
     def to_xml(self, attrib: Optional[dict] = None) -> ET.Element:
         """

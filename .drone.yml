@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: CC0-1.0
+# SPDX-FileCopyrightText: 2023 Anna <cyber@sysrq.in>
+
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: test
+    image: python:3.10
+    commands:
+      - pip install tox
+      - tox run
+
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: test
+    image: python:3.11
+    commands:
+      - pip install tox
+      - tox run
+
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: test
+    image: fsfe/reuse:latest
+    commands:
+      - reuse lint

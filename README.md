@@ -4,6 +4,8 @@
 gentle
 ======
 
+[![Build Status](https://drone.tildegit.org/api/badges/CyberTaIlor/gentle/status.svg)](https://drone.tildegit.org/CyberTaIlor/gentle)
+
 **Gent**oo **L**azy **E**ntry — a `metadata.xml` generator.
 
 
