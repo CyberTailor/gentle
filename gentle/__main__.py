@@ -13,6 +13,7 @@ import gentle
 from gentle.generators import AbstractGenerator
 from gentle.metadata import MetadataXML
 
+import gentle.generators.cargo
 import gentle.generators.shards
 
 try:
