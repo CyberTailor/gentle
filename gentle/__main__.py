@@ -97,9 +97,10 @@ def main() -> None:
     with TemporaryDirectory(prefix="gentle-") as tmpdir:
         srcdir = portage_src_unpack(args.ebuild, tmpdir)
         for cls in AbstractGenerator.get_generator_subclasses():
-            logger.info("Starting %s", cls.__name__)
             generator = cls(srcdir)
-            generator.update_metadata_xml(mxml)
+            if generator.active:
+                logger.info("Starting %s", cls.__name__)
+                generator.update_metadata_xml(mxml)
     mxml.dump()
 
 

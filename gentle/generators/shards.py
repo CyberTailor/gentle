@@ -32,14 +32,8 @@ logger = logging.getLogger("shards")
 class ShardsGenerator(AbstractGenerator):
     def __init__(self, srcdir: Path):
         self.shard_yml = srcdir / "shard.yml"
-        self._active = all([_HAS_PYYAML,
-                            self.shard_yml.exists(),
-                            self.shard_yml.is_file()])
 
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
-        if not self._active:
-            return
-
         with open(self.shard_yml) as file:
             shard = yaml.load(file, CLoader)
 
@@ -61,3 +55,7 @@ class ShardsGenerator(AbstractGenerator):
             logger.info("Found repository: %s", repo)
             if (remote_id := extract_remote_id(repo)) is not None:
                 mxml.add_upstream_remote_id(remote_id)
+
+    @property
+    def active(self) -> bool:
+        return _HAS_PYYAML and self.shard_yml.is_file()

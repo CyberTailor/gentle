@@ -35,9 +35,6 @@ class CargoGenerator(AbstractGenerator):
     def __init__(self, srcdir: Path):
         self.srcdir = srcdir
         self.cargo_toml = srcdir / "Cargo.toml"
-        self._active = all([_HAS_TOMLLIB,
-                            self.cargo_toml.exists(),
-                            self.cargo_toml.is_file()])
 
     def process_cargo_toml(self, cargo: dict, mxml: MetadataXML) -> None:
         if (package := cargo.get("package")) is None:
@@ -63,9 +60,6 @@ class CargoGenerator(AbstractGenerator):
                 mxml.add_upstream_remote_id(remote_id)
 
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
-        if not self._active:
-            return
-
         with open(self.cargo_toml, "rb") as file:
             cargo = tomllib.load(file)
 
@@ -80,3 +74,7 @@ class CargoGenerator(AbstractGenerator):
                         self.process_cargo_toml(tomllib.load(file), mxml)
         else:
             self.process_cargo_toml(cargo, mxml)
+
+    @property
+    def active(self) -> bool:
+        return _HAS_TOMLLIB and self.cargo_toml.is_file()

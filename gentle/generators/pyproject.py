@@ -34,14 +34,8 @@ logger = logging.getLogger("pyproject")
 class PyprojectGenerator(AbstractGenerator):
     def __init__(self, srcdir: Path):
         self.pyproject_toml = srcdir / "pyproject.toml"
-        self._active = all([_HAS_TOMLLIB,
-                            self.pyproject_toml.exists(),
-                            self.pyproject_toml.is_file()])
 
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
-        if not self._active:
-            return
-
         with open(self.pyproject_toml, "rb") as file:
             pyproject = tomllib.load(file)
 
@@ -65,3 +59,6 @@ class PyprojectGenerator(AbstractGenerator):
                 case "source" | "repo" | "repository" | "home" | "homepage":
                     if (remote_id := extract_remote_id(value)) is not None:
                         mxml.add_upstream_remote_id(remote_id)
+    @property
+    def active(self) -> bool:
+        return _HAS_TOMLLIB and self.pyproject_toml.is_file()

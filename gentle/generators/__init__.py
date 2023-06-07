@@ -29,3 +29,8 @@ class AbstractGenerator(ABC):
     @abstractmethod
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
         ...
+
+    @property
+    @abstractmethod
+    def active(self) -> bool:
+        ...
