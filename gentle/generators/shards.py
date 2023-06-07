@@ -35,7 +35,8 @@ class ShardsGenerator(AbstractGenerator):
 
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
         with open(self.shard_yml) as file:
-            shard = yaml.load(file, CLoader)
+            if (shard := yaml.load(file, CLoader)) is None:
+                shard = {}
 
         for author in map(extract_name_email, shard.get("authors", [])):
             if author is None:
