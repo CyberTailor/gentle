@@ -137,7 +137,7 @@ class MetadataXML:
             return
 
         logger.info("Setting upstream changelog to %s", url)
-        self._upstream.bugs_to = url
+        self._upstream.changelog = url
 
         upstream = self._make_upstream_element()
         changelog = ET.SubElement(upstream, "changelog")
