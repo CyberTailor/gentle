@@ -8,6 +8,8 @@ Metadata XML generator for Python PEP 621 (pyproject.toml).
 The following attributes are supported:
 
 * Upstream maintainer(s)
+* Upstream bug tracker
+* Upstream changelog
 * Upstream documentation
 * Remote ID
 """
@@ -42,7 +44,11 @@ class PyprojectGenerator(AbstractGenerator):
         if (project := pyproject.get("project")) is None:
             return
 
-        for maint in project.get("maintainers", {}):
+        maint_key = "maintainers"
+        if maint_key not in project:
+            maint_key = "authors"
+
+        for maint in project.get(maint_key, {}):
             person = Person(name=maint.get("name", ""), email=maint.get("email", ""))
             if not person.name:
                 continue
