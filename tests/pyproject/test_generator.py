@@ -35,3 +35,7 @@ def test_pkg(mxml: MetadataXML, dirname: str):
     gen.update_metadata_xml(mxml)
     with open(Path(__file__).parent / dirname / "metadata.xml") as file:
         assert mxml.dumps() == file.read().rstrip()
+
+    mxml_prev = deepcopy(mxml)
+    gen.update_metadata_xml(mxml)
+    assert compare_mxml(mxml_prev, mxml) == ""
