@@ -92,6 +92,7 @@ class MetadataXML:
                 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
             """))
             self.xml.write(file, encoding="unicode")
+            file.write("\n")
 
     def add_upstream_maintainer(self, person: Person) -> None:
         """ Add a person to the list of upstream maintainers """
