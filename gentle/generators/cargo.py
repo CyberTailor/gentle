@@ -69,13 +69,14 @@ class CargoGenerator(AbstractGenerator):
         with open(self.cargo_toml, "rb") as file:
             cargo = tomllib.load(file)
 
-        if "package" not in cargo and "workspace" in cargo:
-            workspace = cargo["workspace"]
-            members = set(workspace.get(members, []))
-            members -= frozenset(workspace.get("exclude", []))
-            for member in members:
-                member_toml = self.srcdir / member / "Cargo.toml"
-                with open(member_toml, "rb") as file:
-                    self.process_cargo_toml(tomllib.load(file), mxml)
+        if "package" not in cargo:
+            if "workspace" in cargo:
+                workspace = cargo["workspace"]
+                members = set(workspace.get(members, []))
+                members -= frozenset(workspace.get("exclude", []))
+                for member in members:
+                    member_toml = self.srcdir / member / "cargo.toml"
+                    with open(member_toml, "rb") as file:
+                        self.process_cargo_toml(tomllib.load(file), mxml)
         else:
             self.process_cargo_toml(cargo, mxml)
