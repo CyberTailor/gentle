@@ -13,6 +13,8 @@ Supported generators
 --------------------
 
 * Crystal [Shards](https://github.com/crystal-lang/shards/blob/master/docs/shard.yml.adoc)
+* Python [PEP 621](https://peps.python.org/pep-0621/)
+* Rust [Cargo](https://doc.rust-lang.org/cargo/reference/manifest.html)
 
 
 Dependencies
@@ -20,6 +22,7 @@ Dependencies
 
 * [Portage](https://pypi.org/project/portage/)
 * [PyYAML](https://pyyaml.org/) *(optional)*
+* [Tomli](https://pypi.org/project/tomli/) *(optional)*
 
 
 Installing

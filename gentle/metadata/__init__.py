@@ -13,6 +13,7 @@ from typing import Optional
 
 logger = logging.getLogger("metadata")
 
+
 @dataclass
 class Person:
     name: str = field(default="", compare=False)
@@ -112,14 +113,41 @@ class MetadataXML:
         upstream = self._make_upstream_element()
         upstream.append(remote_id.to_xml())
 
+    def set_upstream_bugs_to(self, url: str) -> None:
+        """ Set upstream bugs-to URL """
+        if self._upstream.bugs_to:
+            return
+
+        logger.info("Setting upstream bug tracker to %s", url)
+        self._upstream.bugs_to = url
+
+        upstream = self._make_upstream_element()
+        bugs_to = ET.SubElement(upstream, "bugs-to")
+        bugs_to.text = url
+
+    def set_upstream_changelog(self, url: str) -> None:
+        """ Set upstream changelog URL """
+        if self._upstream.changelog:
+            return
+
+        logger.info("Setting upstream changelog to %s", url)
+        self._upstream.bugs_to = url
+
+        upstream = self._make_upstream_element()
+        changelog = ET.SubElement(upstream, "changelog")
+        changelog.text = url
+
     def set_upstream_doc(self, url: str) -> None:
         """ Set upstream documentation URL """
+        if self._upstream.doc:
+            return
+
+        logger.info("Setting upstream documentation to %s", url)
+        self._upstream.doc = url
+
         upstream = self._make_upstream_element()
-        if upstream.find("doc") is None:
-            logger.info("Setting upstream documentation to %s", url)
-            self._upstream.doc = url
-            doc = ET.SubElement(upstream, "doc")
-            doc.text = url
+        doc = ET.SubElement(upstream, "doc")
+        doc.text = url
 
     def _make_upstream_element(self) -> ET.Element:
         if (upstream := self.xml.find("upstream")) is None:

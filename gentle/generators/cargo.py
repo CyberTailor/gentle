@@ -5,7 +5,7 @@
 """
 Metadata XML generator for Cargo.
 
-The folliwing attributes are supported:
+The following attributes are supported:
 
 * Upstream maintainer(s)
 * Upstream documentation
