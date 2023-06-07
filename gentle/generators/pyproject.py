@@ -44,6 +44,8 @@ class PyprojectGenerator(AbstractGenerator):
 
         for maint in project.get("maintainers", {}):
             person = Person(name=maint.get("name", ""), email=maint.get("email", ""))
+            if not person.name:
+                continue
             logger.info("Found upstream maintainer: %s", person)
             mxml.add_upstream_maintainer(person)
 
