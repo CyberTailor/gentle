@@ -58,7 +58,7 @@ class PyprojectGenerator(AbstractGenerator):
         for name, value in project.get("urls").items():
             logger.info("Found %s: %s", name, value)
             match name.lower():
-                case "bug tracker" | "bugtracker" | "bugs":
+                case "bug tracker" | "bugtracker" | "bugs" | "issues":
                     mxml.set_upstream_bugs_to(value)
                 case "changelog" | "changes":
                     mxml.set_upstream_changelog(value)
