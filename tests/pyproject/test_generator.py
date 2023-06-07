@@ -27,7 +27,7 @@ def test_pkg_empty(mxml: MetadataXML):
     assert compare_mxml(mxml_old, mxml) == ""
 
 
-@pytest.mark.parametrize("dirname", ["pkgcraft"])
+@pytest.mark.parametrize("dirname", ["mkdocs-material", "pkgcraft"])
 def test_pkg(mxml: MetadataXML, dirname: str):
     gen = PyprojectGenerator(Path(__file__).parent / dirname)
     assert gen.active
