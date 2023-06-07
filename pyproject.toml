@@ -21,7 +21,7 @@ toml = ["tomli; python_version <= '3.11'"]
 # shard.yml
 yaml = ["PyYAML"]
 
-test = ["pytest"]
+test = ["pytest", "xmldiff"]
 doc = ["sphinx", "insipid-sphinx-theme"]
 
 [project.scripts]

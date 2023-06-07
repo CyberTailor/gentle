@@ -2,10 +2,13 @@
 # SPDX-FileCopyrightText: 2023 Anna <cyber@sysrq.in>
 # No warranty
 
+from copy import deepcopy
 from pathlib import Path
 
 from gentle.generators.pyproject import PyprojectGenerator
 from gentle.metadata import MetadataXML
+
+from tests.utils import compare_mxml
 
 
 def test_pkg_none(mxml: MetadataXML):
@@ -17,6 +20,6 @@ def test_pkg_empty(mxml: MetadataXML):
     gen = PyprojectGenerator(Path(__file__).parent / "pkg_empty")
     assert gen.active
 
-    mxml_old = mxml
+    mxml_old = deepcopy(mxml)
     gen.update_metadata_xml(mxml)
-    assert mxml_old == mxml
+    assert compare_mxml(mxml_old, mxml) == ""

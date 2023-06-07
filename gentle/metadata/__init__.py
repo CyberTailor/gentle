@@ -94,6 +94,11 @@ class MetadataXML:
             self.xml.write(file, encoding="unicode")
             file.write("\n")
 
+    def dumps(self) -> None:
+        """ Convert the object to text """
+        ET.indent(self.xml, space="\t", level=0)
+        return ET.tostring(self.xml.getroot(), encoding="unicode")
+
     def add_upstream_maintainer(self, person: Person) -> None:
         """ Add a person to the list of upstream maintainers """
         if person in self._upstream.maintainers:
