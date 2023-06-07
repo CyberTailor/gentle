@@ -26,7 +26,7 @@ def test_pkg_empty(mxml: MetadataXML):
     assert compare_mxml(mxml_old, mxml) == ""
 
 
-@pytest.mark.parametrize("dirname", ["athena-spec"])
+@pytest.mark.parametrize("dirname", ["athena-spec", "exception_page"])
 def test_pkg(mxml: MetadataXML, dirname: str):
     gen = ShardsGenerator(Path(__file__).parent / dirname)
     assert gen.active
