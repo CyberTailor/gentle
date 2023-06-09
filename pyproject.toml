@@ -12,8 +12,18 @@ authors = [
 ]
 dynamic = ["version", "description"]
 readme = "README.md"
+license = {file = "LICENSE"}
 requires-python = ">=3.10"
 dependencies = ["portage"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: DFSG approved",
+    "Operating System :: POSIX",
+    "Topic :: System :: Software Distribution",
+    "Topic :: Utilities"
+]
 
 [project.optional-dependencies]
 # Cargo.toml, pyproject.toml, ...
