@@ -38,7 +38,7 @@ emerge app-portage/gentle
 
 ### Other systems
 
-`pip install . --user`
+`pip install gentle-mxml --user`
 
 
 Packaging
