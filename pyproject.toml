@@ -36,5 +36,8 @@ Issues = "https://bugs.sysrq.in/enter_bug.cgi?product=Software&component=gentle"
 [tool.flit.module]
 name = "gentle"
 
+[tool.flit.sdist]
+include = ["tests/"]
+
 [tool.pytest.ini_options]
 addopts = "--doctest-modules"
