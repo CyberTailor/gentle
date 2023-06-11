@@ -50,9 +50,9 @@ class PyprojectGenerator(AbstractGenerator):
 
         for maint in project.get(maint_key, {}):
             person = Person(name=maint.get("name", ""), email=maint.get("email", ""))
+            logger.info("Found upstream maintainer: %s", person)
             if not person.name:
                 continue
-            logger.info("Found upstream maintainer: %s", person)
             mxml.add_upstream_maintainer(person)
 
         for name, value in project.get("urls").items():

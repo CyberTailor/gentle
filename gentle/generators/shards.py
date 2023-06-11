@@ -41,6 +41,7 @@ class ShardsGenerator(AbstractGenerator):
         for author in map(extract_name_email, shard.get("authors", [])):
             if author is None:
                 continue
+            logger.info("Found upstream maintainer: %s", author)
             mxml.add_upstream_maintainer(author)
 
         if (doc := shard.get("documentation")) is not None:

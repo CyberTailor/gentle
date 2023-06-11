@@ -43,6 +43,7 @@ class CargoGenerator(AbstractGenerator):
         for author in map(extract_name_email, package.get("authors", [])):
             if author is None:
                 continue
+            logger.info("Found upstream maintainer: %s", author)
             mxml.add_upstream_maintainer(author)
 
         if (doc := package.get("documentation")) is not None:
@@ -69,7 +70,8 @@ class CargoGenerator(AbstractGenerator):
                 members = set(workspace.get(members, []))
                 members -= frozenset(workspace.get("exclude", []))
                 for member in members:
-                    member_toml = self.srcdir / member / "cargo.toml"
+                    logger.info("Processing workspace member: %s", member)
+                    member_toml = self.srcdir / member / "Cargo.toml"
                     with open(member_toml, "rb") as file:
                         self.process_cargo_toml(tomllib.load(file), mxml)
         else:
