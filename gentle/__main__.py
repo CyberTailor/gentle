@@ -14,6 +14,7 @@ from gentle.generators import AbstractGenerator
 from gentle.metadata import MetadataXML
 
 import gentle.generators.cargo
+import gentle.generators.composer
 import gentle.generators.npm
 import gentle.generators.pyproject
 import gentle.generators.shards
