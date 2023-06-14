@@ -12,6 +12,7 @@ gentle
 Supported generators
 --------------------
 
+* [Bower](https://github.com/bower/spec/blob/master/json.md)
 * Crystal ([Shards](https://github.com/crystal-lang/shards/blob/master/docs/shard.yml.adoc))
 * Node.js ([npm](https://docs.npmjs.com/files/package.json/))
 * Python ([PEP 621](https://peps.python.org/pep-0621/))
