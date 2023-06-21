@@ -36,46 +36,52 @@ class CargoGenerator(AbstractGenerator):
         self.srcdir = srcdir
         self.cargo_toml = srcdir / "Cargo.toml"
 
-    def process_cargo_toml(self, cargo: dict, mxml: MetadataXML) -> None:
-        if (package := cargo.get("package")) is None:
-            return
+    def process_metadata(self, package: dict, mxml: MetadataXML) -> None:
+        if isinstance(authors := package.get("authors"), list):
+            for author in map(extract_name_email, authors):
+                if author is None:
+                    continue
+                logger.info("Found upstream maintainer: %s", author)
+                mxml.add_upstream_maintainer(author)
 
-        for author in map(extract_name_email, package.get("authors", [])):
-            if author is None:
-                continue
-            logger.info("Found upstream maintainer: %s", author)
-            mxml.add_upstream_maintainer(author)
-
-        if (doc := package.get("documentation")) is not None:
+        if isinstance(doc := package.get("documentation"), str):
             logger.info("Found documentation: %s", doc)
             mxml.set_upstream_doc(doc)
 
-        if (homepage := package.get("homepage")) is not None:
+        if isinstance(homepage := package.get("homepage"), str):
             logger.info("Found homepage: %s", homepage)
             if (remote_id := extract_remote_id(homepage)) is not None:
                 mxml.add_upstream_remote_id(remote_id)
 
-        if (repo := package.get("repository")) is not None:
+        if isinstance(repo := package.get("repository"), str):
             logger.info("Found repository: %s", repo)
             if (remote_id := extract_remote_id(repo)) is not None:
                 mxml.add_upstream_remote_id(remote_id)
 
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
         with open(self.cargo_toml, "rb") as file:
-            cargo = tomllib.load(file)
+            crate = tomllib.load(file)
 
-        if "package" not in cargo:
-            if "workspace" in cargo:
-                workspace = cargo["workspace"]
-                members = set(workspace.get(members, []))
-                members -= frozenset(workspace.get("exclude", []))
-                for member in members:
-                    logger.info("Processing workspace member: %s", member)
-                    member_toml = self.srcdir / member / "Cargo.toml"
+        if (package := crate.get("package")):
+            self.process_metadata(package, mxml)
+
+        if (workspace := crate.get("workspace")) is not None:
+            if (workspace_package := workspace.get("package")) is not None:
+                self.process_metadata(workspace_package, mxml)
+
+            members = set(workspace.get("members", []))
+            members -= frozenset(workspace.get("exclude", []))
+            for member in members:
+                logger.info("Processing workspace member: %s", member)
+                member_toml = self.srcdir / member / "Cargo.toml"
+                try:
                     with open(member_toml, "rb") as file:
-                        self.process_cargo_toml(tomllib.load(file), mxml)
-        else:
-            self.process_cargo_toml(cargo, mxml)
+                        member_crate = tomllib.load(file)
+                except OSError:
+                    continue
+
+                if (member_package := member_crate.get("package")) is not None:
+                    self.process_metadata(member_package, mxml)
 
     @property
     def active(self) -> bool:
