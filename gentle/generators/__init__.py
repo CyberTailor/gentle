@@ -12,7 +12,7 @@ from gentle.metadata import MetadataXML
 
 class AbstractGenerator(ABC):
     """ Generic class for metadata generators. """
-    _subclasses = []
+    _subclasses: "list[AbstractGenerator]" = []
 
     @classmethod
     def get_generator_subclasses(cls):

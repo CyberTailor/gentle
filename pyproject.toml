@@ -51,3 +51,11 @@ include = ["tests/"]
 
 [tool.pytest.ini_options]
 addopts = "--doctest-modules"
+
+[[tool.mypy.overrides]]
+module = [
+    "portage.*",
+    "tomllib.*",
+    "xmldiff.*"
+]
+ignore_missing_imports = true

@@ -25,7 +25,7 @@ try:
     try:
         import tomllib
     except ModuleNotFoundError:
-        import tomli as tomllib
+        import tomli as tomllib  # type: ignore
     _HAS_TOMLLIB = True
 except ModuleNotFoundError:
     _HAS_TOMLLIB = False
@@ -67,6 +67,7 @@ class PyprojectGenerator(AbstractGenerator):
                 case "source" | "repo" | "repository" | "home" | "homepage":
                     if (remote_id := extract_remote_id(value)) is not None:
                         mxml.add_upstream_remote_id(remote_id)
+
     @property
     def active(self) -> bool:
         return _HAS_TOMLLIB and self.pyproject_toml.is_file()

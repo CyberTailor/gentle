@@ -64,7 +64,7 @@ class NpmGenerator(AbstractGenerator):
                 *attr, value = repo.split(":")
                 match attr:
                     case ["bitbucket"] | ["github"] | ["gitlab"]:
-                        remote_id = RemoteID(attr=attr, value=value)
+                        remote_id = RemoteID(attr=attr[0], value=value)
                         mxml.add_upstream_remote_id(remote_id)
                     case []:
                         remote_id = RemoteID(attr="github", value=value)

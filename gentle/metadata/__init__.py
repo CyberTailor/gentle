@@ -66,7 +66,7 @@ class MetadataXML:
         :param xmlfile: path to the :file:`metadata.xml` file
         """
         self.xmlfile: Path = xmlfile
-        self.xml: ET = ET.parse(self.xmlfile)
+        self.xml: ET.ElementTree = ET.parse(self.xmlfile)
 
         self._maintainers: list[Person] = []
         self._upstream = Upstream()
@@ -94,7 +94,7 @@ class MetadataXML:
             self.xml.write(file, encoding="unicode")
             file.write("\n")
 
-    def dumps(self) -> None:
+    def dumps(self) -> str:
         """ Convert the object to text """
         ET.indent(self.xml, space="\t", level=0)
         return ET.tostring(self.xml.getroot(), encoding="unicode")
@@ -192,7 +192,7 @@ class MetadataXML:
         else:
             return None
 
-        return Person(name, email)
+        return Person(name or "", email or "")
 
     def _parse_package_maintainer(self, xml: ET.Element) -> None:
         """
@@ -212,7 +212,7 @@ class MetadataXML:
                 self._upstream.maintainers.append(person)
 
         for remote in xml.findall("remote-id"):
-            attr = remote.get("type")
+            attr = remote.get("type", "unknown")
             value = "".join(remote.itertext())
             self._upstream.remote_ids.append(RemoteID(attr, value))
 

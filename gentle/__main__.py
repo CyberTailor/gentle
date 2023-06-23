@@ -47,7 +47,9 @@ def portage_src_unpack(ebuild: Path, tmpdir: str) -> Path:
     # pylint: disable=protected-access
     if portdir not in portage.portdb.porttrees:
         portdir_overlay = portage.settings.get("PORTDIR_OVERLAY", "")
-        os.environ["PORTDIR_OVERLAY"] = portdir_overlay + " " + portage._shell_quote(portdir)
+        os.environ["PORTDIR_OVERLAY"] = (portdir_overlay
+                                         + " "
+                                         + portage._shell_quote(portdir))
 
         print(f"Appending {portdir} to PORTDIR_OVERLAY...")
         portage._reset_legacy_globals()
