@@ -18,6 +18,7 @@ import gentle.generators.cargo
 import gentle.generators.composer
 import gentle.generators.hpack
 import gentle.generators.npm
+import gentle.generators.pkg_info
 import gentle.generators.pyproject
 import gentle.generators.shards
 

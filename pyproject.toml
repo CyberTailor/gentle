@@ -26,6 +26,8 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
+# PKG-INFO
+pkginfo = ["pkginfo"]
 # Cargo.toml, pyproject.toml, ...
 toml = ["tomli; python_version <= '3.11'"]
 # shard.yml

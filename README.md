@@ -17,7 +17,7 @@ Supported generators
 * Haskell ([Hpack](https://github.com/sol/hpack/blob/main/README.md))
 * Node.js ([npm](https://docs.npmjs.com/files/package.json/))
 * PHP ([Composer](https://getcomposer.org/doc/04-schema.md))
-* Python ([PEP 621](https://peps.python.org/pep-0621/))
+* Python ([PEP 621](https://peps.python.org/pep-0621/) and [PEP 643](https://peps.python.org/pep-0643/))
 * Rust ([Cargo](https://doc.rust-lang.org/cargo/reference/manifest.html))
 
 
@@ -25,6 +25,7 @@ Dependencies
 ------------
 
 * [Portage](https://pypi.org/project/portage/)
+* [pkginfo](https://pypi.org/project/pkginfo/) *(optional)*
 * [PyYAML](https://pyyaml.org/) *(optional)*
 * [Tomli](https://pypi.org/project/tomli/) *(optional)*
 
