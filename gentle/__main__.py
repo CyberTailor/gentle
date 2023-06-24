@@ -10,7 +10,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 import gentle
-from gentle.generators import AbstractGenerator
+from gentle.generators import AbstractGenerator, GeneratorClass
 from gentle.metadata import MetadataXML
 
 import gentle.generators.bower
@@ -103,6 +103,7 @@ def main() -> None:
 
     with TemporaryDirectory(prefix="gentle-") as tmpdir:
         srcdir = portage_src_unpack(args.ebuild, tmpdir)
+        cls: GeneratorClass
         for cls in AbstractGenerator.get_generator_subclasses():
             generator = cls(srcdir)
             if generator.active:
