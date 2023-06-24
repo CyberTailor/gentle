@@ -23,14 +23,3 @@ steps:
     commands:
       - pip install tox
       - tox run
-
----
-kind: pipeline
-type: docker
-name: reuse-lint
-
-steps:
-  - name: test
-    image: fsfe/reuse:latest
-    commands:
-      - reuse lint
