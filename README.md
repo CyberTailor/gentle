@@ -28,6 +28,7 @@ Dependencies
 * [Portage](https://pypi.org/project/portage/)
 * [pkginfo](https://pypi.org/project/pkginfo/) *(optional)*
 * [PyYAML](https://pyyaml.org/) *(optional)*
+* [rdflib](https://pypi.org/project/rdflib/) *(optional)*
 * [Tomli](https://pypi.org/project/tomli/) *(optional)*
 
 
