@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2022 Anna <cyber@sysrq.in>
 
 __pycache__
+docs/_build
 dist
 *.pyo
 
