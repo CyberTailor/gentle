@@ -31,7 +31,7 @@ remote_ids = {
     "gitlab":
         re.compile(r"https?://gitlab.com/(?P<v>.+?)/?"),
     "gnome-gitlab":
-        re.compile(r"https?://gitlab.gnome.org/(?P<v>.+?)/?"),
+        re.compile(r"https?://gitlab.gnome.org/(?P<v>\S+)/?"),
     "google-code":
         re.compile(r"https?://code.google.com/archive/p/(?P<v>\S+)"),
     "hackage":

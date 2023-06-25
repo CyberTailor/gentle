@@ -28,6 +28,8 @@ classifiers = [
 [project.optional-dependencies]
 # PKG-INFO
 pkginfo = ["pkginfo"]
+# DOAP
+rdf = ["rdflib"]
 # Cargo.toml, pyproject.toml, ...
 toml = ["tomli; python_version <= '3.11'"]
 # shard.yml
@@ -70,6 +72,7 @@ check_untyped_defs = true
 module = [
     "portage.*",
     "tomllib.*",
+    "xml.sax._exceptions.*",
     "xmldiff.*"
 ]
 ignore_missing_imports = true

@@ -14,6 +14,7 @@ Supported generators
 
 * [Bower](https://github.com/bower/spec/blob/master/json.md)
 * Crystal ([Shards](https://github.com/crystal-lang/shards/blob/master/docs/shard.yml.adoc))
+* [DOAP](https://github.com/ewilderj/doap/wiki)
 * Haskell ([Hpack](https://github.com/sol/hpack/blob/main/README.md))
 * Node.js ([npm](https://docs.npmjs.com/files/package.json/))
 * PHP ([Composer](https://getcomposer.org/doc/04-schema.md))
