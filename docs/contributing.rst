@@ -45,6 +45,12 @@ Finally, send a patch to the developer using `git send-email`_:
 
 .. _git send-email: https://git-send-email.io/
 
+.. note::
+   If you prefer GitHub-style workflow, use the `mirror repo`_ to send pull
+   requests.
+
+.. _mirror repo: https://github.com/cybertailor/gentle
+
 Adding a new generator
 ----------------------
 
