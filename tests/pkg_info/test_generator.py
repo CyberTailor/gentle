@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from gentle.generators.pkg_info import PkgInfoGenerator
+from gentle.generators.python.pkg_info import PkgInfoGenerator
 from gentle.metadata import MetadataXML
 
 from tests.utils import compare_mxml

@@ -19,8 +19,8 @@ import gentle.generators.composer
 import gentle.generators.doap
 import gentle.generators.hpack
 import gentle.generators.npm
-import gentle.generators.pkg_info
-import gentle.generators.pyproject
+import gentle.generators.python.pkg_info
+import gentle.generators.python.pyproject
 import gentle.generators.shards
 
 try:

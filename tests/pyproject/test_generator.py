@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from gentle.generators.pyproject import PyprojectGenerator
+from gentle.generators.python.pyproject import PyprojectGenerator
 from gentle.metadata import MetadataXML
 
 from tests.utils import compare_mxml

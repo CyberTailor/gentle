@@ -18,6 +18,12 @@ import logging
 from pathlib import Path
 
 from gentle.generators import AbstractGenerator
+from gentle.generators.python import (
+    BUG_TRACKER_LABELS,
+    CHANGELOG_LABELS,
+    DOCS_LABELS,
+    HOME_REPO_LABELS
+)
 from gentle.metadata import Person, MetadataXML
 from gentle.metadata.utils import extract_remote_id
 
@@ -57,16 +63,15 @@ class PyprojectGenerator(AbstractGenerator):
 
         for name, value in project.get("urls").items():
             logger.info("Found %s: %s", name, value)
-            match name.lower():
-                case "bug tracker" | "bugtracker" | "bugs" | "issues":
-                    mxml.set_upstream_bugs_to(value)
-                case "changelog" | "changes":
-                    mxml.set_upstream_changelog(value)
-                case "doc" | "docs" | "documentation":
-                    mxml.set_upstream_doc(value)
-                case "source" | "repo" | "repository" | "home" | "homepage":
-                    if (remote_id := extract_remote_id(value)) is not None:
-                        mxml.add_upstream_remote_id(remote_id)
+            if name.lower() in BUG_TRACKER_LABELS:
+                mxml.set_upstream_bugs_to(value)
+            elif name.lower() in CHANGELOG_LABELS:
+                mxml.set_upstream_changelog(value)
+            elif name.lower() in DOCS_LABELS:
+                mxml.set_upstream_doc(value)
+            elif name.lower() in HOME_REPO_LABELS:
+                if (remote_id := extract_remote_id(value)) is not None:
+                    mxml.add_upstream_remote_id(remote_id)
 
     @property
     def active(self) -> bool:
