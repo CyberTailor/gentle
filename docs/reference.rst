@@ -5,14 +5,8 @@
 API Reference
 =============
 
-gentle.generators
------------------
+.. autosummary::
+    :toctree: api
+    :recursive:
 
-.. automodule:: gentle.generators
-     :members:
-
-gentle.metadata
----------------
-
-.. automodule:: gentle.metadata
-     :members:
+    gentle

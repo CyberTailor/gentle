@@ -19,6 +19,7 @@ release = '0.3.0'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    'sphinx.ext.autosummary',
     'sphinx.ext.autodoc',
     'sphinx-prompt',
 ]
@@ -43,7 +44,13 @@ except ModuleNotFoundError:
 root_doc = 'toc'
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
-manpages_url = 'https://docs.sysrq.in/{path}'
+
+autodoc_default_flags = [
+    "members",
+    "show-inheritance",
+    "inherited-members",
+    "undoc-members",
+]
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
