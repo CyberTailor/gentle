@@ -30,9 +30,9 @@ classifiers = [
 pkginfo = ["pkginfo"]
 # DOAP
 rdf = ["rdflib"]
-# Cargo.toml, pyproject.toml, ...
+# Cargo.toml, pyproject.toml
 toml = ["tomli; python_version <= '3.11'"]
-# shard.yml
+# package.yaml, shard.yml
 yaml = ["PyYAML"]
 
 docs = [
@@ -49,6 +49,7 @@ test = [
 gentle = "gentle.__main__:main"
 
 [project.urls]
+Home = "https://gentle.sysrq.in"
 Source = "https://git.sysrq.in/gentle"
 Issues = "https://bugs.sysrq.in/enter_bug.cgi?product=Software&component=gentle"
 
