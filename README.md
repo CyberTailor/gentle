@@ -38,7 +38,6 @@ Installing
 ### Gentoo
 
 ```sh
-eselect repository enable guru
 emerge app-portage/gentle
 ```
 

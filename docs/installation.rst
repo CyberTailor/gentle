@@ -18,12 +18,10 @@ All other dependencies are optional, you can find them in the
 Gentoo
 ------
 
-gentle is packaged for Gentoo in the GURU ebuild repository.
+gentle is packaged in the Gentoo repository.
 
 .. prompt:: bash #
 
-   eselect repository enable guru
-   emaint sync -r guru
    emerge app-portage/gentle
 
 Manual installation
