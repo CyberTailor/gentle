@@ -1,9 +1,13 @@
 # SPDX-License-Identifier: CC0-1.0
 # SPDX-FileCopyrightText: 2022 Anna <cyber@sysrq.in>
 
+.tox
+
 __pycache__
-docs/_build
-dist
 *.pyo
+
+docs/_build
+docs/api
+dist
 
 *.sw[op]
