@@ -5,7 +5,6 @@
 """ Utilities for metadata generators """
 
 import re
-from typing import Optional
 
 from gentle.metadata import Person, RemoteID
 
@@ -63,8 +62,10 @@ remote_ids = {
 }
 
 
-def extract_name_email(author: str) -> Optional[Person]:
+def extract_name_email(author: str) -> Person | None:
     """
+    Make a :class:`Person` object from a string.
+
     :param author: string in the ``name <email>`` format
 
     >>> extract_name_email("Foo Bar <foobar@example.com>")
@@ -77,8 +78,10 @@ def extract_name_email(author: str) -> Optional[Person]:
     return Person(match.group("name"), match.group("email"))
 
 
-def extract_remote_id(url: str) -> Optional[RemoteID]:
+def extract_remote_id(url: str) -> RemoteID | None:
     """
+    Make a :class:`RemoteID` object from a string.
+
     :param url: project's source repository
 
     >>> extract_remote_id("https://pypi.org/project/foo-bar")

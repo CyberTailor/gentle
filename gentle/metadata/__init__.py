@@ -9,17 +9,18 @@ import textwrap
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field, replace
 from pathlib import Path
-from typing import Optional
 
 logger = logging.getLogger("metadata")
 
 
 @dataclass
 class Person:
+    """ Representation of a person"""
+
     name: str = field(default="", compare=False)
     email: str = ""
 
-    def to_xml(self, attrib: Optional[dict] = None) -> ET.Element:
+    def to_xml(self, attrib: dict | None = None) -> ET.Element:
         """
         :param attrib: attributes for the ``<maintainer>`` tag
         :return: :file:`metadata.xml` respresentation of a person
@@ -37,6 +38,8 @@ class Person:
 
 @dataclass
 class RemoteID:
+    """ Representation of a remote ID """
+
     attr: str
     value: str
 
@@ -51,10 +54,12 @@ class RemoteID:
 
 @dataclass
 class Upstream:
+    """ Representation of upstream metadata """
+
     maintainers: list[Person] = field(default_factory=list)
-    changelog: Optional[str] = None
-    doc: Optional[str] = None
-    bugs_to: Optional[str] = None
+    changelog: str | None = None
+    doc: str | None = None
+    bugs_to: str | None = None
     remote_ids: list[RemoteID] = field(default_factory=list)
 
 
@@ -172,7 +177,7 @@ class MetadataXML:
             self._parse_upstream(upstream)
 
     def _parse_person(self, xml: ET.Element, *, name_optional: bool = False,
-                      email_optional: bool = False) -> Optional[Person]:
+                      email_optional: bool = False) -> Person | None:
         """
         :param xml: ``<maintainer>`` XML tag
         """
