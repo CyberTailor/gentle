@@ -3,9 +3,8 @@
 # No warranty
 
 import argparse
+import importlib.util
 import logging
-import os
-import re
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -23,61 +22,10 @@ import gentle.generators.python.pkg_info
 import gentle.generators.python.pyproject
 import gentle.generators.shards
 
-try:
-    import portage
-    from portage.package.ebuild.doebuild import doebuild
-except ModuleNotFoundError:
-    _HAS_PORTAGE = False
-else:
-    _HAS_PORTAGE = True
+_HAS_PORTAGE = importlib.util.find_spec("portage") is not None
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("main")
-
-
-def portage_src_unpack(ebuild: Path, tmpdir: str) -> Path:
-    """
-    Unpack the sources using Portage.
-
-    :param ebuild: path to the ebuild file
-    :param tmpdir: temporary directory
-    :return: the value of ``${S}``
-    """
-    ebuild = ebuild.resolve()
-    portdir = str(ebuild.parents[2])
-
-    # pylint: disable=protected-access
-    if portdir not in portage.portdb.porttrees:
-        portdir_overlay = portage.settings.get("PORTDIR_OVERLAY", "")
-        os.environ["PORTDIR_OVERLAY"] = (portdir_overlay
-                                         + " "
-                                         + portage._shell_quote(portdir))
-
-        print(f"Appending {portdir} to PORTDIR_OVERLAY...")
-        portage._reset_legacy_globals()
-
-    tmpsettings: portage.config = portage.portdb.doebuild_settings
-    tmpsettings["PORTAGE_USERNAME"] = os.getlogin()
-    tmpsettings["PORTAGE_TMPDIR"] = tmpdir
-    tmpsettings["DISTDIR"] = tmpdir
-    tmpsettings.features._features.clear()  # pylint: disable=protected-access
-    tmpsettings.features.add("unprivileged")
-    settings = portage.config(clone=tmpsettings)
-
-    status = doebuild(str(ebuild), "unpack",
-                      tree="porttree",
-                      settings=settings,
-                      vartree=portage.db[portage.root]["vartree"])
-    if status != 0:
-        raise RuntimeError("Unpack failed")
-
-    env = Path(settings.get("T")) / "environment"
-    srcdir_re = re.compile(r'^declare -x S="(?P<val>.+)"$')
-    with open(env) as file:
-        for line in file:
-            if (match := srcdir_re.match(line)) is not None:
-                return Path(match.group("val"))
-    raise RuntimeError("No ${S} value found")
 
 
 def main() -> None:
@@ -103,7 +51,12 @@ def main() -> None:
     mxml = MetadataXML(mxml_file)
 
     with TemporaryDirectory(prefix="gentle-") as tmpdir:
-        srcdir = portage_src_unpack(args.ebuild, tmpdir)
+        # pylint: disable=import-outside-toplevel
+        match args.api:
+            case "portage":
+                from gentle.pms.portagepm import src_unpack
+
+        srcdir = src_unpack(args.ebuild, tmpdir)
         cls: GeneratorClass
         for cls in AbstractGenerator.get_generator_subclasses():
             generator = cls(srcdir)
