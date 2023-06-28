@@ -16,7 +16,8 @@ from pathlib import Path
 from xml.sax._exceptions import SAXException
 
 from gentle.generators import AbstractGenerator
-from gentle.metadata import MetadataXML, Person
+from gentle.metadata import MetadataXML
+from gentle.metadata.types import Person
 from gentle.metadata.utils import extract_remote_id
 
 try:

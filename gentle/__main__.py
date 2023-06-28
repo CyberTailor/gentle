@@ -47,14 +47,14 @@ def main() -> None:
     parser.add_argument("-v", action="version", version=gentle.__version__)
     args = parser.parse_args()
 
-    mxml_file = args.ebuild.parent / "metadata.xml"
-    mxml = MetadataXML(mxml_file)
-
     with TemporaryDirectory(prefix="gentle-") as tmpdir:
         # pylint: disable=import-outside-toplevel
         match args.api:
             case "portage":
-                from gentle.pms.portagepm import src_unpack
+                from gentle.pms.portagepm import parse_mxml, src_unpack
+
+        mxml_file = args.ebuild.parent / "metadata.xml"
+        mxml = MetadataXML(mxml_file, parse_mxml)
 
         srcdir = src_unpack(args.ebuild, tmpdir)
         cls: GeneratorClass

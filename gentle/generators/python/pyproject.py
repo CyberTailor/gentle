@@ -24,7 +24,8 @@ from gentle.generators.python import (
     DOCS_LABELS,
     HOME_REPO_LABELS
 )
-from gentle.metadata import Person, MetadataXML
+from gentle.metadata import MetadataXML
+from gentle.metadata.types import Person
 from gentle.metadata.utils import extract_remote_id
 
 try:

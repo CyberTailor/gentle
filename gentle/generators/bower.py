@@ -16,7 +16,8 @@ import logging
 from pathlib import Path
 
 from gentle.generators import AbstractGenerator
-from gentle.metadata import Person, MetadataXML
+from gentle.metadata import MetadataXML
+from gentle.metadata.types import Person
 from gentle.metadata.utils import extract_name_email, extract_remote_id
 
 logger = logging.getLogger("bower")

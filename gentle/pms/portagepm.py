@@ -9,6 +9,9 @@ from pathlib import Path
 
 import portage
 from portage.package.ebuild.doebuild import doebuild
+from portage.xml.metadata import MetaDataXML as PortageMetadataXML
+
+from gentle.metadata.types import Person, RemoteID, Upstream
 
 logger = logging.getLogger("pm")
 
@@ -56,3 +59,41 @@ def src_unpack(ebuild: Path, tmpdir: str) -> Path:
             if (match := srcdir_re.match(line)) is not None:
                 return Path(match.group("val"))
     raise RuntimeError("No ${S} value found")
+
+
+def parse_mxml(xmlfile: Path) -> Upstream:
+    """
+    Parse :file:`metadata.xml` files using Portage
+
+    :param xmlfile: Path to the :file:`metadata.xml` file
+    """
+
+    result = Upstream()
+
+    metadata = PortageMetadataXML(str(xmlfile), None)
+    upstreams = metadata.upstream()
+    if len(upstreams) == 0:
+        return result
+
+    upstream = upstreams[0]
+
+    if len(upstream.bugtrackers) != 0:
+        result.bugs_to = upstream.bugtrackers[0]
+    if len(upstream.changelogs) != 0:
+        result.changelog = upstream.changelogs[0]
+    if len(upstream.docs) != 0:
+        result.doc = upstream.docs[0]
+
+    for maintainer in upstream.maintainers:
+        person = Person(maintainer.name, maintainer.email)
+        if person.name is None:
+            # required
+            continue
+        result.maintainers.append(person)
+
+    for value, attr in upstream.remoteids:
+        if attr is None:
+            continue
+        result.remote_ids.append(RemoteID(attr, value))
+
+    return result

@@ -7,8 +7,9 @@ from pathlib import Path
 import pytest
 
 from gentle.metadata import MetadataXML
+from gentle.pms.portagepm import parse_mxml
 
 
 @pytest.fixture
 def mxml() -> MetadataXML:
-    return MetadataXML(Path(__file__).parent / "metadata.xml")
+    return MetadataXML(Path(__file__).parent / "metadata.xml", parse_mxml)
