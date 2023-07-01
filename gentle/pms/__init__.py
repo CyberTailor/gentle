@@ -4,6 +4,7 @@
 
 import logging
 import os
+import pwd
 import re
 from pathlib import Path
 
@@ -35,7 +36,7 @@ def src_unpack(ebuild: Path, tmpdir: str) -> Path:
         portage._reset_legacy_globals()
 
     tmpsettings: portage.config = portage.portdb.doebuild_settings
-    tmpsettings["PORTAGE_USERNAME"] = os.getlogin()
+    tmpsettings["PORTAGE_USERNAME"] = pwd.getpwuid(os.getuid()).pw_name
     tmpsettings["PORTAGE_TMPDIR"] = tmpdir
     tmpsettings["DISTDIR"] = tmpdir
     tmpsettings.features._features.clear()  # pylint: disable=protected-access
