@@ -37,6 +37,8 @@ remote_ids = {
         re.compile(r"https?://hackage.haskell.org/package/(?P<v>\S+)"),
     "heptapod":
         re.compile(r"https?://foss.heptapod.net/(?P<v>\S+?)([.]git)/?"),
+    "kde-invent":
+        re.compile(r"https?://invent.kde.org/(?P<v>\S+)([.]git)?/?"),
     "launchpad":
         re.compile(r"https?://launchpad.net/(?P<v>\S+)"),
     "osdn":
