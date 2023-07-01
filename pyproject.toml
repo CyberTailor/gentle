@@ -61,6 +61,9 @@ include = [
     "docs/",
     "tests/"
 ]
+exclude = [
+    "docs/api/"
+]
 
 [tool.pytest.ini_options]
 addopts = "--doctest-modules"
