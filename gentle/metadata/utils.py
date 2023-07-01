@@ -22,21 +22,21 @@ remote_ids = {
     "ctan":
         re.compile(r"https?://ctan.org/pkg/(?P<v>\S+)"),
     "freedesktop-gitlab":
-        re.compile(r"https?://gitlab.freedesktop.org/(?P<v>.+?)/?"),
+        re.compile(r"https?://gitlab.freedesktop.org/(?P<v>\S+?)([.]git)?/?"),
     "gentoo":
-        re.compile(r"https?://gitweb.gentoo.org/(?P<v>.+)[.]git"),
+        re.compile(r"https?://gitweb.gentoo.org/(?P<v>\S+)[.]git"),
     "github":
-        re.compile(r"https?://github.com/(?P<v>\S+/\S+)"),
+        re.compile(r"https?://github.com/(?P<v>\S+/\S+)([.]git)?/?"),
     "gitlab":
-        re.compile(r"https?://gitlab.com/(?P<v>.+?)/?"),
+        re.compile(r"https?://gitlab.com/(?P<v>\S+?)([.]git)?/?"),
     "gnome-gitlab":
-        re.compile(r"https?://gitlab.gnome.org/(?P<v>\S+)/?"),
+        re.compile(r"https?://gitlab.gnome.org/(?P<v>\S+)([.]git)?/?"),
     "google-code":
         re.compile(r"https?://code.google.com/archive/p/(?P<v>\S+)"),
     "hackage":
         re.compile(r"https?://hackage.haskell.org/package/(?P<v>\S+)"),
     "heptapod":
-        re.compile(r"https?://foss.heptapod.net/(?P<v>.+?)/?"),
+        re.compile(r"https?://foss.heptapod.net/(?P<v>\S+?)([.]git)/?"),
     "launchpad":
         re.compile(r"https?://launchpad.net/(?P<v>\S+)"),
     "osdn":
@@ -56,7 +56,7 @@ remote_ids = {
     "sourceforge":
         re.compile(r"https?://(?P<v>\S+).sourceforge.(net|io)"),
     "sourcehut":
-        re.compile(r"https?://sr.ht/(?P<v>\S+/\S+)"),
+        re.compile(r"https?://(git[.])?sr.ht/(?P<v>\S+/\S+)"),
     "vim":
         re.compile(r"https?://vim.org/scripts/script.php?script_id=(?P<v>\d+)")
 }
