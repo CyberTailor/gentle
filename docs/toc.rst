@@ -11,6 +11,7 @@ Table of Contents
    installation
    getting-started
    contributing
+   release-notes
    reference
 
 Indices and tables
