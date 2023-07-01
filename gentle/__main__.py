@@ -5,6 +5,7 @@
 import argparse
 import importlib.util
 import logging
+import sys
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -54,7 +55,11 @@ def main() -> None:
                 from gentle.pms.portagepm import parse_mxml, src_unpack
 
         mxml_file = args.ebuild.parent / "metadata.xml"
-        mxml = MetadataXML(mxml_file, parse_mxml)
+        try:
+            mxml = MetadataXML(mxml_file, parse_mxml)
+        except FileNotFoundError:
+            logger.error("Ebuild's metadata.xml file is missing, create it before running gentle")
+            sys.exit(1)
 
         srcdir = src_unpack(args.ebuild, tmpdir)
         cls: GeneratorClass
