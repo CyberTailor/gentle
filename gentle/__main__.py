@@ -5,6 +5,7 @@
 import argparse
 import importlib.util
 import logging
+import os
 import sys
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -45,8 +46,13 @@ def main() -> None:
     parser.add_argument("ebuild", type=Path, help="path to the ebuild file")
     parser.add_argument("--api", "-a", choices=pm, default=pm[0],
                         help="package manager API to use")
+    parser.add_argument("--prefix", "-p",
+                        help="value of EPREFIX")
     parser.add_argument("-v", action="version", version=gentle.__version__)
     args = parser.parse_args()
+
+    if args.prefix is not None:
+        os.environ["PORTAGE_OVERRIDE_EPREFIX"] = args.prefix
 
     with TemporaryDirectory(prefix="gentle-") as tmpdir:
         # pylint: disable=import-outside-toplevel
