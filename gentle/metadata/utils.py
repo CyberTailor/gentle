@@ -12,11 +12,11 @@ author_re = re.compile(r"(?P<name>.+?)\s*<(?P<email>.+?@.+?)>")
 
 remote_ids = {
     "bitbucket":
-        re.compile(r"https?://bitbucket.org/(?P<v>\S+/\S+)"),
+        re.compile(r"https?://bitbucket.org/(?P<v>[^\s/]+/[^\s/]+)"),
     "cpan":
-        re.compile(r"https?://metacpan.org/dist/(?P<v>[^/]+)"),
+        re.compile(r"https?://metacpan.org/dist/(?P<v>[^\s/]+)"),
     "cpan-module":
-        re.compile(r"https?://metacpan.org/pod/(?P<v>[^/]+)"),
+        re.compile(r"https?://metacpan.org/pod/(?P<v>[^\s/]+)"),
     "cran":
         re.compile(r"https?://cran.r-project.org/web/packages/(?P<v>\S+)"),
     "ctan":
@@ -26,7 +26,7 @@ remote_ids = {
     "gentoo":
         re.compile(r"https?://gitweb.gentoo.org/(?P<v>\S+)[.]git"),
     "github":
-        re.compile(r"https?://github.com/(?P<v>\S+/\S+)([.]git)?/?"),
+        re.compile(r"https?://github.com/(?P<v>[^\s/]+/[^\s/]+)([.]git)?/?"),
     "gitlab":
         re.compile(r"https?://gitlab.com/(?P<v>\S+?)([.]git)?/?"),
     "gnome-gitlab":
@@ -58,7 +58,7 @@ remote_ids = {
     "sourceforge":
         re.compile(r"https?://(?P<v>\S+).sourceforge.(net|io)"),
     "sourcehut":
-        re.compile(r"https?://(git[.])?sr.ht/(?P<v>\S+/\S+)"),
+        re.compile(r"https?://(git[.])?sr.ht/(?P<v>\[^\s/]+/\[^\s/]+)"),
     "vim":
         re.compile(r"https?://vim.org/scripts/script.php?script_id=(?P<v>\d+)")
 }

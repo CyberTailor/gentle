@@ -8,6 +8,7 @@ Release Notes
 0.4.0
 -----
 * New generator: PEAR/PECL
+* New generator: Apache Maven POM
 * Add ``kde-invent`` remote-id
 * Trim ".git" suffix when extracting remote-id
 
