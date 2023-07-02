@@ -25,6 +25,15 @@ class Person:
     email: str = ""
     status: MaintainerStatus = MaintainerStatus.NONE
 
+    def __str__(self) -> str:
+        if self.name and self.email:
+            return f"{self.name} <{self.email}>"
+
+        if self.email:
+            return self.email
+
+        return self.name
+
     def to_xml(self, attrib: dict | None = None) -> ET.Element:
         """
         :param attrib: attributes for the ``<maintainer>`` tag
@@ -54,6 +63,9 @@ class RemoteID:
 
     attr: str
     value: str
+
+    def __str__(self) -> str:
+        return f"{self.attr}:{self.value}"
 
     def to_xml(self) -> ET.Element:
         """
