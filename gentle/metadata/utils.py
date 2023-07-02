@@ -71,7 +71,7 @@ def extract_name_email(author: str) -> Person | None:
     :param author: string in the ``name <email>`` format
 
     >>> extract_name_email("Foo Bar <foobar@example.com>")
-    Person(name='Foo Bar', email='foobar@example.com')
+    Person(name='Foo Bar', email='foobar@example.com', status=<MaintainerStatus.NONE: 1>)
     >>> extract_name_email("Foo Bar") is None
     True
     """

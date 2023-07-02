@@ -6,6 +6,15 @@
 
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
+from enum import Enum, auto
+
+
+class MaintainerStatus(Enum):
+    """ Maintainer status enum """
+
+    NONE = auto()
+    ACTIVE = auto()
+    INACTIVE = auto()
 
 
 @dataclass
@@ -14,13 +23,21 @@ class Person:
 
     name: str = field(default="", compare=False)
     email: str = ""
+    status: MaintainerStatus = MaintainerStatus.NONE
 
     def to_xml(self, attrib: dict | None = None) -> ET.Element:
         """
         :param attrib: attributes for the ``<maintainer>`` tag
         :return: :file:`metadata.xml` respresentation of a person
         """
-        result = ET.Element("maintainer", attrib=attrib or {})
+        attrib = attrib or {}
+        match self.status:
+            case MaintainerStatus.ACTIVE:
+                attrib["status"] = "active"
+            case MaintainerStatus.INACTIVE:
+                attrib["status"] = "inactive"
+
+        result = ET.Element("maintainer", attrib=attrib)
         if self.name:
             name_elem = ET.SubElement(result, "name")
             name_elem.text = self.name
