@@ -8,6 +8,10 @@ gentle
 
 **Gent**oo **L**azy **E**ntry — a `metadata.xml` generator.
 
+If you need a distro-agnostic solution, try [upstream-ontologist][u-o]!
+
+[u-o]: https://github.com/jelmer/upstream-ontologist
+
 
 Supported generators
 --------------------
@@ -16,11 +20,12 @@ Supported generators
 * Haskell ([Hpack](https://github.com/sol/hpack/blob/main/README.md))
 * Java ([Maven](https://maven.apache.org/pom.html))
 * Node.js ([npm](https://docs.npmjs.com/files/package.json/), [Bower](https://github.com/bower/spec/blob/master/json.md))
-* PHP ([Composer](https://getcomposer.org/doc/04-schema.md), and [PEAR/PECL](https://pear.php.net/manual/en/guide.developers.package2.php))
-* Python ([PEP 621](https://peps.python.org/pep-0621/) and [PEP 643](https://peps.python.org/pep-0643/))
+* PHP ([Composer](https://getcomposer.org/doc/04-schema.md), [PEAR/PECL](https://pear.php.net/manual/en/guide.developers.package2.php))
+* Python ([PEP 621](https://peps.python.org/pep-0621/), [PEP 643](https://peps.python.org/pep-0643/))
 * Rust ([Cargo](https://doc.rust-lang.org/cargo/reference/manifest.html))
 
 Language-independent:
+
 * [DOAP](https://github.com/ewilderj/doap/wiki)
 
 
