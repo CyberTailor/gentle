@@ -17,6 +17,7 @@ Supported generators
 --------------------
 
 * Crystal ([Shards](https://github.com/crystal-lang/shards/blob/master/docs/shard.yml.adoc))
+* Dart ([Pubspec](https://dart.dev/tools/pub/pubspec))
 * Haskell ([Hpack](https://github.com/sol/hpack/blob/main/README.md))
 * Java ([Maven](https://maven.apache.org/pom.html))
 * Node.js ([npm](https://docs.npmjs.com/files/package.json/), [Bower](https://github.com/bower/spec/blob/master/json.md))

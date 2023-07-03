@@ -23,6 +23,7 @@ import gentle.generators.npm
 import gentle.generators.pear
 import gentle.generators.python.pkg_info
 import gentle.generators.python.pyproject
+import gentle.generators.pubspec
 import gentle.generators.shards
 
 _HAS_PORTAGE = importlib.util.find_spec("portage") is not None
