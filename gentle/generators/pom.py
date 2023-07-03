@@ -57,7 +57,7 @@ class PomGenerator(AbstractGenerator):
         if (issues := xml.find("pom:issueManagement", ns)) is not None:
             if (issues_url := issues.find("pom:url", ns)) is not None:
                 issues_url_text = "".join(issues_url.itertext())
-                logger.info("Found upstream bug tracker: %s", issues_url_text)
+                logger.info("Found bug tracker: %s", issues_url_text)
                 mxml.set_upstream_bugs_to(issues_url_text)
 
         if (homepage := xml.find("pom:url", ns)) is not None:
@@ -69,7 +69,7 @@ class PomGenerator(AbstractGenerator):
         if (scm := xml.find("pom:scm", ns)) is not None:
             if (scm_url := scm.find("pom:url", ns)) is not None:
                 scm_url_text = "".join(scm_url.itertext())
-                logger.info("Found upstream repository: %s", scm_url_text)
+                logger.info("Found repository: %s", scm_url_text)
                 if (remote_id := extract_remote_id(scm_url_text)) is not None:
                     mxml.add_upstream_remote_id(remote_id)
 
