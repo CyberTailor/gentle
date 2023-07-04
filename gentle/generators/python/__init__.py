@@ -4,7 +4,27 @@
 
 """ Common data for Python generators """
 
-BUG_TRACKER_LABELS = ["bug tracker", "bugtracker", "bugs", "issues"]
-CHANGELOG_LABELS = ["changelog", "changes"]
-DOCS_LABELS = ["doc", "docs", "documentation"]
-HOME_REPO_LABELS = ["source", "repo", "repository", "home", "homepage"]
+BUG_TRACKER_LABELS = [
+    "bug tracker",
+    "bugtracker",
+    "bugs",
+    "issues",
+    "tracker"
+]
+CHANGELOG_LABELS = [
+    "changelog",
+    "changes",
+    "release notes"
+]
+DOCS_LABELS = [
+    "doc",
+    "docs",
+    "documentation"
+]
+HOME_REPO_LABELS = [
+    "source",
+    "repo",
+    "repository",
+    "home",
+    "homepage"
+]

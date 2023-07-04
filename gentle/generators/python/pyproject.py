@@ -62,7 +62,7 @@ class PyprojectGenerator(AbstractGenerator):
                 continue
             mxml.add_upstream_maintainer(person)
 
-        for name, value in project.get("urls").items():
+        for name, value in project.get("urls", {}).items():
             logger.info("Found %s: %s", name, value)
             if name.lower() in BUG_TRACKER_LABELS:
                 mxml.set_upstream_bugs_to(value)

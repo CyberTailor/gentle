@@ -25,6 +25,7 @@ import gentle.generators.nuspec
 import gentle.generators.pear
 import gentle.generators.python.pkg_info
 import gentle.generators.python.pyproject
+import gentle.generators.python.setuptools
 import gentle.generators.pubspec
 import gentle.generators.shards
 

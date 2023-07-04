@@ -12,6 +12,7 @@ Release Notes
 * New generator: GNU Autoconf
 * New generator: NuGet
 * New generator: PEAR/PECL
+* New generator: Setuptools
 * Add ``kde-invent`` remote-id
 * Trim ".git" suffix when extracting remote-id
 
