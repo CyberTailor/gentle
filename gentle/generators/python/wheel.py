@@ -3,7 +3,7 @@
 # No warranty
 
 """
-Metadata XML generator for Python PEP 643 (PKG-INFO).
+Metadata XML generator for Python PEP 517.
 
 The following attributes are supported:
 
@@ -15,6 +15,7 @@ The following attributes are supported:
 """
 
 import logging
+from importlib.metadata import PackageMetadata
 from pathlib import Path
 
 from gentle.generators import AbstractGenerator
@@ -28,32 +29,45 @@ from gentle.metadata import MetadataXML
 from gentle.metadata.utils import extract_name_email, extract_remote_id
 
 try:
-    import pkginfo
-    _HAS_PKGINFO_LIB = True
+    from build import BuildException, BuildBackendException
+    from build.util import project_wheel_metadata
+    _HAS_BUILD = True
 except ModuleNotFoundError:
-    _HAS_PKGINFO_LIB = False
+    _HAS_BUILD = False
 
-logger = logging.getLogger("pkg-info")
+logger = logging.getLogger("wheel")
 
 
-class PkgInfoGenerator(AbstractGenerator):
+class WheelGenerator(AbstractGenerator):
     def __init__(self, srcdir: Path):
         self.srcdir = srcdir
+
+        self.pyproject_toml = srcdir / "pyproject.toml"
+        self.setup_cfg = srcdir / "setup.cfg"
+        self.setup_py = srcdir / "setup.py"
+
         self.pkg_info = srcdir / "PKG-INFO"
 
     # pylint: disable=too-many-branches
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
-        package = pkginfo.UnpackedSDist(str(self.srcdir))
+        try:
+            metadata: PackageMetadata = project_wheel_metadata(self.srcdir)
+        except (BuildException, BuildBackendException):
+            return
 
-        maint_keys = (package.maintainer, package.maintainer_email)
-        if maint_keys == (None, None):
-            maint_keys = (package.author, package.author_email)
+        maint_key = "maintainer"
+        if maint_key not in metadata:
+            maint_key = "author"
+
+        maint_email_key = "maintainer-email"
+        if maint_email_key not in metadata:
+            maint_email_key = "author-email"
 
         maintainers = []
-        for maint_key in maint_keys:
-            if maint_key is None:
+        for key in (maint_key, maint_email_key):
+            if key not in metadata:
                 continue
-            maintainers += [entry.strip() for entry in maint_key.split(",")]
+            maintainers += [entry.strip() for entry in metadata[key].split(",")]
 
         for maint in map(extract_name_email, maintainers):
             if maint is None:
@@ -61,12 +75,12 @@ class PkgInfoGenerator(AbstractGenerator):
             logger.info("Found upstream maintainer: %s", maint)
             mxml.add_upstream_maintainer(maint)
 
-        if package.home_page is not None:
-            logger.info("Found homepage: %s", package.home_page)
-            if (remote_id := extract_remote_id(package.home_page)) is not None:
+        if (homepage := metadata.get("home-page")) is not None:  # type: ignore
+            logger.info("Found homepage: %s", homepage)
+            if (remote_id := extract_remote_id(homepage)) is not None:
                 mxml.add_upstream_remote_id(remote_id)
 
-        for entry in package.project_urls:
+        for entry in metadata.get_all("project-url", []):
             name, value = [item.strip()
                            for item in entry.split(",", maxsplit=1)]
             logger.info("Found %s: %s", name, value)
@@ -82,4 +96,16 @@ class PkgInfoGenerator(AbstractGenerator):
 
     @property
     def active(self) -> bool:
-        return _HAS_PKGINFO_LIB and self.pkg_info.is_file()
+        return (
+            _HAS_BUILD
+            and (
+                self.pyproject_toml.is_file()
+                or self.setup_cfg.is_file()
+                or self.setup_py.is_file()
+            )
+            and not self.pkg_info.is_file()
+        )
+
+    @property
+    def slow(self) -> bool:
+        return True

@@ -32,7 +32,9 @@ pkginfo = ["pkginfo"]
 rdf = ["rdflib"]
 # Cargo.toml, pyproject.toml
 toml = ["tomli; python_version <= '3.11'"]
-# package.yaml, shard.yml
+# Python packaging
+wheel = ["build"]
+# package.yaml, pubspec.yaml, shard.yml
 yaml = ["PyYAML"]
 
 docs = [

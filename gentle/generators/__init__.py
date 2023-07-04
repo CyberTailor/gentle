@@ -36,5 +36,9 @@ class AbstractGenerator(ABC):
     def active(self) -> bool:
         ...
 
+    @property
+    def slow(self) -> bool:
+        return False
+
 
 GeneratorClass = Type[AbstractGenerator]

@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2022-2023 Anna <cyber@sysrq.in>
 # No warranty
 
+# pylint: disable=unused-import
+
 import argparse
 import importlib.util
 import logging
@@ -23,13 +25,16 @@ import gentle.generators.hpack
 import gentle.generators.npm
 import gentle.generators.nuspec
 import gentle.generators.pear
-import gentle.generators.python.pkg_info
+import gentle.generators.pubspec
 import gentle.generators.python.pyproject
 import gentle.generators.python.setuptools
-import gentle.generators.pubspec
+import gentle.generators.python.pkg_info
+import gentle.generators.python.wheel
 import gentle.generators.shards
 
 _HAS_PORTAGE = importlib.util.find_spec("portage") is not None
+
+_HAS_BUILD = importlib.util.find_spec("build") is not None
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("main")
@@ -47,12 +52,18 @@ def main() -> None:
     if len(pm) == 0:
         raise RuntimeError("No package manager installed. Aborting")
 
+    py_api = ["simple"]
+    if _HAS_BUILD:
+        py_api.insert(0, "wheel")
+
     parser = argparse.ArgumentParser("gentle", description=gentle.__doc__)
     parser.add_argument("ebuild", type=Path, help="path to the ebuild file")
     parser.add_argument("--api", "-a", choices=pm, default=pm[0],
                         help="package manager API to use")
     parser.add_argument("--prefix", "-p",
                         help="value of EPREFIX")
+    parser.add_argument("--quick", "-q", action="store_true",
+                        help="skip slow generators")
     parser.add_argument("-v", action="version", version=gentle.__version__)
     args = parser.parse_args()
 
@@ -76,9 +87,12 @@ def main() -> None:
         cls: GeneratorClass
         for cls in AbstractGenerator.get_generator_subclasses():
             generator = cls(srcdir)
-            if generator.active:
-                logger.info("Starting %s", cls.__name__)
-                generator.update_metadata_xml(mxml)
+            if not generator.active:
+                continue
+            if args.quick and generator.slow:
+                continue
+            logger.info("Starting %s", cls.__name__)
+            generator.update_metadata_xml(mxml)
     mxml.dump()
 
 
