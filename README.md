@@ -91,6 +91,16 @@ sure the correct authorship appears.
 [gh]: http://github.com/cybertailor/gentle
 
 
+IRC
+---
+
+You can join the `#gentle` channel either on [Libera Chat][libera] or
+[via Matrix][matrix].
+
+[libera]: https://libera.chat/
+[matrix]: https://matrix.to/#/#gentle:libera.chat
+
+
 License
 -------
 
