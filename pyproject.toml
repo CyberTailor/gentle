@@ -52,6 +52,7 @@ gentle = "gentle.__main__:main"
 Home = "https://gentle.sysrq.in"
 Source = "https://git.sysrq.in/gentle"
 Issues = "https://bugs.sysrq.in/enter_bug.cgi?product=Software&component=gentle"
+Changelog = "https://gentle.sysrq.in/release-notes.html"
 
 [tool.flit.module]
 name = "gentle"
