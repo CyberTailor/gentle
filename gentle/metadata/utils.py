@@ -12,55 +12,55 @@ author_re = re.compile(r"(?P<name>.+?)\s*<(?P<email>.+?@.+?)>")
 
 remote_ids = {
     "bitbucket":
-        re.compile(r"https?://bitbucket.org/(?P<v>[^\s/]+/[^\s/]+)"),
+        re.compile(r"^https?://bitbucket.org/(?P<v>[^\s/]+?/[^\s/]+?)([.]git)?(/.*)?$"),
     "cpan":
-        re.compile(r"https?://metacpan.org/dist/(?P<v>[^\s/]+)"),
+        re.compile(r"^https?://metacpan.org/dist/(?P<v>[^\s/]+?)(/.*)?$"),
     "cpan-module":
-        re.compile(r"https?://metacpan.org/pod/(?P<v>[^\s/]+)"),
+        re.compile(r"^https?://metacpan.org/pod/(?P<v>[^\s/]+?)(/.*)?$"),
     "cran":
-        re.compile(r"https?://cran.r-project.org/web/packages/(?P<v>\S+)"),
+        re.compile(r"^https?://cran.r-project.org/web/packages/(?P<v>\S+?)(/.*)?$"),
     "ctan":
-        re.compile(r"https?://ctan.org/pkg/(?P<v>\S+)"),
+        re.compile(r"^https?://ctan.org/pkg/(?P<v>\S+?)(/.*)?$"),
     "freedesktop-gitlab":
-        re.compile(r"https?://gitlab.freedesktop.org/(?P<v>\S+?)([.]git)?/?"),
+        re.compile(r"^https?://gitlab.freedesktop.org/(?P<v>\S+)([.]git)?(/.*)?$"),
     "gentoo":
-        re.compile(r"https?://gitweb.gentoo.org/(?P<v>\S+)[.]git"),
+        re.compile(r"^https?://gitweb.gentoo.org/(?P<v>\S+?)[.]git(/.*)?$"),
     "github":
-        re.compile(r"https?://github.com/(?P<v>[^\s/]+/[^\s/]+)([.]git)?/?"),
+        re.compile(r"^https?://github.com/(?P<v>[^\s/]+?/[^\s/]+?)([.]git)?(/.*)?$"),
     "gitlab":
-        re.compile(r"https?://gitlab.com/(?P<v>\S+?)([.]git)?/?"),
+        re.compile(r"^https?://gitlab.com/(?P<v>\S+)([.]git)?(/.*)?$"),
     "gnome-gitlab":
-        re.compile(r"https?://gitlab.gnome.org/(?P<v>\S+)([.]git)?/?"),
+        re.compile(r"^https?://gitlab.gnome.org/(?P<v>\S+)([.]git)?(/.*)?$"),
     "google-code":
-        re.compile(r"https?://code.google.com/archive/p/(?P<v>\S+)"),
+        re.compile(r"^https?://code.google.com/archive/p/(?P<v>\S+)(/.*)?$"),
     "hackage":
-        re.compile(r"https?://hackage.haskell.org/package/(?P<v>\S+)"),
+        re.compile(r"^https?://hackage.haskell.org/package/(?P<v>\S+)(/.*)?$"),
     "heptapod":
-        re.compile(r"https?://foss.heptapod.net/(?P<v>\S+?)([.]git)/?"),
+        re.compile(r"^https?://foss.heptapod.net/(?P<v>\S+)([.]git)?(/.*)?$"),
     "kde-invent":
-        re.compile(r"https?://invent.kde.org/(?P<v>\S+)([.]git)?/?"),
+        re.compile(r"^https?://invent.kde.org/(?P<v>\S+)([.]git)?(/.*)?$"),
     "launchpad":
-        re.compile(r"https?://launchpad.net/(?P<v>\S+)"),
+        re.compile(r"^https?://launchpad.net/(?P<v>\S+)(/.*)?$"),
     "osdn":
-        re.compile(r"https?://osdn.net/projects/(?P<v>\S+)"),
+        re.compile(r"^https?://osdn.net/projects/(?P<v>\S+)(/.*)?$"),
     "pear":
-        re.compile(r"https?://pear.php.net/package/(?P<v>\S+)"),
+        re.compile(r"^https?://pear.php.net/package/(?P<v>\S+)(/.*)?$"),
     "pecl":
-        re.compile(r"https?://pecl.php.net/package/(?P<v>\S+)"),
+        re.compile(r"^https?://pecl.php.net/package/(?P<v>\S+)(/.*)?$"),
     "pypi":
-        re.compile(r"https?://pypi.org/project/(?P<v>\S+)"),
+        re.compile(r"^https?://pypi.org/project/(?P<v>\S+)(/.*)?$"),
     "rubygems":
-        re.compile(r"https?://rubygems.org/gems/(?P<v>\S+)"),
+        re.compile(r"^https?://rubygems.org/gems/(?P<v>\S+)(/.*)?$"),
     "savannah":
-        re.compile(r"https?://savannah.gnu.org/projects/(?P<v>\S+)"),
+        re.compile(r"^https?://savannah.gnu.org/projects/(?P<v>\S+)(/.*)?$"),
     "savannah-nongnu":
-        re.compile(r"https?://savannah.nongnu.org/projects/(?P<v>\S+)"),
+        re.compile(r"^https?://savannah.nongnu.org/projects/(?P<v>\S+)(/.*)?$"),
     "sourceforge":
-        re.compile(r"https?://(?P<v>\S+).sourceforge.(net|io)"),
+        re.compile(r"^https?://(?P<v>\S+?).sourceforge.(net|io)(/.*)?$"),
     "sourcehut":
-        re.compile(r"https?://(git[.])?sr.ht/(?P<v>\[^\s/]+/\[^\s/]+)"),
+        re.compile(r"^https?://(git[.])?sr.ht/(?P<v>\[^\s/]+?/\[^\s/]+?)([.]git)?(/.*)?$"),
     "vim":
-        re.compile(r"https?://vim.org/scripts/script.php?script_id=(?P<v>\d+)")
+        re.compile(r"^https?://vim.org/scripts/script.php?script_id=(?P<v>\d+?)$")
 }
 
 
