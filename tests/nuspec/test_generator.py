@@ -5,18 +5,23 @@
 from copy import deepcopy
 from pathlib import Path
 
-from gentle.generators.pubspec import PubspecGenerator
+from gentle.generators.nuspec import NuspecGenerator
 from gentle.metadata import MetadataXML
 from tests.utils import compare_mxml
 
 
 def test_pkg_none(mxml: MetadataXML):
-    gen = PubspecGenerator(Path(__file__).parent / "pkg_none")
+    gen = NuspecGenerator(Path(__file__).parent / "pkg_none")
+    assert not gen.active
+
+
+def test_pkg_multiple(mxml: MetadataXML):
+    gen = NuspecGenerator(Path(__file__).parent / "pkg_multiple")
     assert not gen.active
 
 
 def test_pkg_empty(mxml: MetadataXML):
-    gen = PubspecGenerator(Path(__file__).parent / "pkg_empty")
+    gen = NuspecGenerator(Path(__file__).parent / "pkg_empty")
     assert gen.active
 
     mxml_old = deepcopy(mxml)

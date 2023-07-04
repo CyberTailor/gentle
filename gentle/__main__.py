@@ -20,6 +20,7 @@ import gentle.generators.composer
 import gentle.generators.doap
 import gentle.generators.hpack
 import gentle.generators.npm
+import gentle.generators.nuspec
 import gentle.generators.pear
 import gentle.generators.python.pkg_info
 import gentle.generators.python.pyproject
