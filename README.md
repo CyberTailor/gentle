@@ -29,12 +29,14 @@ Supported generators
 Language-independent:
 
 * [DOAP](https://github.com/ewilderj/doap/wiki)
+* [GNU Autoconf](https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.71/html_node/Initializing-configure.html)
 
 
 Dependencies
 ------------
 
 * [Portage](https://pypi.org/project/portage/)
+* [GNU Autoconf](https://www.gnu.org/software/autoconf/) *(optional)*
 * [pkginfo](https://pypi.org/project/pkginfo/) *(optional)*
 * [PyYAML](https://pyyaml.org/) *(optional)*
 * [rdflib](https://pypi.org/project/rdflib/) *(optional)*

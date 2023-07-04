@@ -9,6 +9,7 @@ Release Notes
 -----
 * New generator: Apache Maven POM
 * New generator: Dart Pubspec
+* New generator: GNU Autoconf
 * New generator: NuGet
 * New generator: PEAR/PECL
 * Add ``kde-invent`` remote-id
