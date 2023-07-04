@@ -17,9 +17,10 @@ Supported generators
 --------------------
 
 * Crystal ([Shards](https://github.com/crystal-lang/shards/blob/master/docs/shard.yml.adoc))
-* Dart ([Pubspec](https://dart.dev/tools/pub/pubspec))
+* Dart ([Pub](https://dart.dev/tools/pub/pubspec))
 * Haskell ([Hpack](https://github.com/sol/hpack/blob/main/README.md))
 * Java ([Maven](https://maven.apache.org/pom.html))
+* .NET ([NuGet](https://learn.microsoft.com/en-us/nuget/reference/nuspec))
 * Node.js ([npm](https://docs.npmjs.com/files/package.json/), [Bower](https://github.com/bower/spec/blob/master/json.md))
 * PHP ([Composer](https://getcomposer.org/doc/04-schema.md), [PEAR/PECL](https://pear.php.net/manual/en/guide.developers.package2.php))
 * Python ([PEP 621](https://peps.python.org/pep-0621/), [PEP 643](https://peps.python.org/pep-0643/))
