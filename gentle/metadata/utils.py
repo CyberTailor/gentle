@@ -22,23 +22,23 @@ remote_ids = {
     "ctan":
         re.compile(r"^https?://ctan.org/pkg/(?P<v>\S+?)(/.*)?$"),
     "freedesktop-gitlab":
-        re.compile(r"^https?://gitlab.freedesktop.org/(?P<v>\S+)([.]git)?(/.*)?$"),
+        re.compile(r"^https?://gitlab.freedesktop.org/(?P<v>[^\s/]+?/[^\s/]+?)([.]git)?(/.*)?$"),
     "gentoo":
         re.compile(r"^https?://gitweb.gentoo.org/(?P<v>\S+?)[.]git(/.*)?$"),
     "github":
         re.compile(r"^https?://github.com/(?P<v>[^\s/]+?/[^\s/]+?)([.]git)?(/.*)?$"),
     "gitlab":
-        re.compile(r"^https?://gitlab.com/(?P<v>\S+)([.]git)?(/.*)?$"),
+        re.compile(r"^https?://gitlab.com/(?P<v>[^\s/]+?/[^\s/]+?)([.]git)?(/.*)?$"),
     "gnome-gitlab":
-        re.compile(r"^https?://gitlab.gnome.org/(?P<v>\S+)([.]git)?(/.*)?$"),
+        re.compile(r"^https?://gitlab.gnome.org/(?P<v>[^\s/]+?/[^\s/]+?)([.]git)?(/.*)?$"),
     "google-code":
         re.compile(r"^https?://code.google.com/archive/p/(?P<v>\S+)(/.*)?$"),
     "hackage":
         re.compile(r"^https?://hackage.haskell.org/package/(?P<v>\S+)(/.*)?$"),
     "heptapod":
-        re.compile(r"^https?://foss.heptapod.net/(?P<v>\S+)([.]git)?(/.*)?$"),
+        re.compile(r"^https?://foss.heptapod.net/(?P<v>[^\s/]+?/[^\s/]+?)([.]git)?(/.*)?$"),
     "kde-invent":
-        re.compile(r"^https?://invent.kde.org/(?P<v>\S+)([.]git)?(/.*)?$"),
+        re.compile(r"^https?://invent.kde.org/(?P<v>[^\s/]+?/[^\s/]+?)([.]git)?(/.*)?$"),
     "launchpad":
         re.compile(r"^https?://launchpad.net/(?P<v>\S+)(/.*)?$"),
     "osdn":
