@@ -8,8 +8,10 @@ BUG_TRACKER_LABELS = [
     "bug tracker",
     "bugtracker",
     "bugs",
+    "issue tracker",
     "issues",
-    "tracker"
+    "tracker",
+    "github: issues"
 ]
 CHANGELOG_LABELS = [
     "changelog",
@@ -19,12 +21,16 @@ CHANGELOG_LABELS = [
 DOCS_LABELS = [
     "doc",
     "docs",
-    "documentation"
+    "documentation",
+    "docs: rtd"
 ]
 HOME_REPO_LABELS = [
+    "code",
     "source",
     "repo",
     "repository",
     "home",
-    "homepage"
+    "homepage",
+    "github",
+    "github: repo"
 ]
