@@ -72,3 +72,7 @@ class AutoconfGenerator(AbstractGenerator):
                 self.conf_ac.is_file() and self.autoconf is not None
             )
         )
+
+    @property
+    def slow(self) -> bool:
+        return not self.conf_sh.is_file()
