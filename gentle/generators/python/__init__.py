@@ -6,6 +6,7 @@
 
 BUG_TRACKER_LABELS = [
     "bug tracker",
+    "bug reports",
     "bugtracker",
     "bugs",
     "issue tracker",
@@ -27,6 +28,7 @@ DOCS_LABELS = [
 HOME_REPO_LABELS = [
     "code",
     "source",
+    "source code",
     "repo",
     "repository",
     "home",
