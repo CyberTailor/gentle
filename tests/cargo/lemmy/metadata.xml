@@ -1,4 +1,5 @@
 <pkgmetadata>
+	<!-- maintainer-needed -->
 	<upstream>
 		<doc>https://join-lemmy.org/docs/en/index.html</doc>
 		<remote-id type="github">LemmyNet/lemmy</remote-id>

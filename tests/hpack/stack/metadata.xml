@@ -1,4 +1,5 @@
 <pkgmetadata>
+	<!-- maintainer-needed -->
 	<upstream>
 		<remote-id type="github">commercialhaskell/stack</remote-id>
 	</upstream>

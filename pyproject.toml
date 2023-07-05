@@ -14,7 +14,10 @@ dynamic = ["version", "description"]
 readme = "README.md"
 license = {file = "LICENSE"}
 requires-python = ">=3.10"
-dependencies = ["portage"]
+dependencies = [
+    "portage",
+    "lxml"
+]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Console",
@@ -87,7 +90,7 @@ check_untyped_defs = true
 module = [
     "portage.*",
     "tomllib.*",
-    "xml.sax._exceptions.*",
+    "xml.sax._exceptions",
     "xmldiff.*"
 ]
 ignore_missing_imports = true

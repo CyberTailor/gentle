@@ -5,10 +5,10 @@
 """ Metadata routines """
 
 import logging
-import textwrap
-import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Callable
+
+import lxml.etree as ET
 
 from gentle.metadata.types import Person, RemoteID, Upstream
 
@@ -24,21 +24,17 @@ class MetadataXML:
         :param upstream: Pre-parsed :class:`Upstream` object
         """
         self.xmlfile: Path = xmlfile
-        self.xml: ET.ElementTree = ET.parse(self.xmlfile)
+        self.xml: ET._ElementTree = ET.parse(self.xmlfile)
 
         self.upstream: Upstream = parser(xmlfile)
 
     def dump(self) -> None:
         """ Write :file:`metadata.xml` file """
         logger.info("Writing metadata.xml")
-        ET.indent(self.xml, space="\t", level=0)
-        with open(self.xmlfile, "w") as file:
-            file.write(textwrap.dedent("""\
-                <?xml version="1.0" encoding="UTF-8"?>
-                <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
-            """))
-            self.xml.write(file, encoding="unicode")
-            file.write("\n")
+        self.xml.write(self.xmlfile,
+                       xml_declaration=True,
+                       pretty_print=True,
+                       encoding="UTF-8")
 
     def dumps(self) -> str:
         """ Convert the object to text """
@@ -101,7 +97,7 @@ class MetadataXML:
         doc = ET.SubElement(upstream, "doc")
         doc.text = url
 
-    def _make_upstream_element(self) -> ET.Element:
+    def _make_upstream_element(self) -> ET._Element:
         if (upstream := self.xml.find("upstream")) is None:
             pkgmetadata = self.xml.getroot()
             upstream = ET.SubElement(pkgmetadata, "upstream")

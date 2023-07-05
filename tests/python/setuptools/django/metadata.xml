@@ -1,4 +1,5 @@
 <pkgmetadata>
+	<!-- maintainer-needed -->
 	<upstream>
 		<doc>https://docs.djangoproject.com/</doc>
 		<changelog>https://docs.djangoproject.com/en/stable/releases/</changelog>

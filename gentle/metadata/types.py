@@ -4,9 +4,10 @@
 
 """ Types for working with Gentoo package metadata """
 
-import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
 from enum import Enum, auto
+
+import lxml.etree as ET
 
 
 class MaintainerStatus(Enum):
@@ -34,7 +35,7 @@ class Person:
 
         return self.name
 
-    def to_xml(self, attrib: dict | None = None) -> ET.Element:
+    def to_xml(self, attrib: dict | None = None) -> ET._Element:
         """
         :param attrib: attributes for the ``<maintainer>`` tag
         :return: :file:`metadata.xml` respresentation of a person
@@ -67,7 +68,7 @@ class RemoteID:
     def __str__(self) -> str:
         return f"{self.attr}:{self.value}"
 
-    def to_xml(self) -> ET.Element:
+    def to_xml(self) -> ET._Element:
         """
         :return: :file:`metadata.xml` respresentation of a remote id
         """

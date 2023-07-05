@@ -10,5 +10,7 @@ docs/_build
 docs/api
 dist
 
+UNKNOWN.egg-info
+
 *.sw[op]
 *~

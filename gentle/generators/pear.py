@@ -11,12 +11,14 @@ The following attributes are supported:
 """
 
 import logging
-import xml.etree.ElementTree as ET
 from pathlib import Path
+
+import lxml.etree as ET
 
 from gentle.generators import AbstractGenerator
 from gentle.metadata import MetadataXML
 from gentle.metadata.types import MaintainerStatus, Person
+from gentle.utils import stringify
 
 logger = logging.getLogger("pear")
 
@@ -27,7 +29,7 @@ class PearGenerator(AbstractGenerator):
 
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
         try:
-            xml: ET.ElementTree = ET.parse(self.package_xmls[0])
+            xml: ET._ElementTree = ET.parse(self.package_xmls[0])
         except ET.ParseError:
             return
 
@@ -41,12 +43,12 @@ class PearGenerator(AbstractGenerator):
             if (lead_name := lead.find("pear:name", ns)) is None:
                 continue
 
-            person = Person("".join(lead_name.itertext()))
+            person = Person(stringify(lead_name))
             if (lead_email := lead.find("pear:email", ns)) is not None:
-                person.email = "".join(lead_email.itertext())
+                person.email = stringify(lead_email)
 
             if (lead_active := lead.find("pear:active", ns)) is not None:
-                match "".join(lead_active.itertext()):
+                match stringify(lead_active):
                     case "yes":
                         person.status = MaintainerStatus.ACTIVE
                     case "no":

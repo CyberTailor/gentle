@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2023 Anna <cyber@sysrq.in>
 # No warranty
 
-import xml.etree.ElementTree as ET
+import lxml.etree as ET
 
 from gentle.metadata.types import Person, RemoteID
 

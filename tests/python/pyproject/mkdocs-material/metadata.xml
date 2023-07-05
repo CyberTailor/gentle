@@ -1,4 +1,5 @@
 <pkgmetadata>
+	<!-- maintainer-needed -->
 	<upstream>
 		<doc>https://squidfunk.github.io/mkdocs-material/</doc>
 		<remote-id type="github">squidfunk/mkdocs-material</remote-id>

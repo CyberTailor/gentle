@@ -11,12 +11,14 @@ The following attributes are supported:
 """
 
 import logging
-import xml.etree.ElementTree as ET
 from pathlib import Path
+
+import lxml.etree as ET
 
 from gentle.generators import AbstractGenerator
 from gentle.metadata import MetadataXML
 from gentle.metadata.utils import extract_remote_id
+from gentle.utils import stringify
 
 logger = logging.getLogger("nuget")
 
@@ -27,7 +29,7 @@ class NuspecGenerator(AbstractGenerator):
 
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
         try:
-            xml: ET.ElementTree = ET.parse(self.nuspec_files[0])
+            xml: ET._ElementTree = ET.parse(self.nuspec_files[0])
         except ET.ParseError:
             return
 
@@ -38,7 +40,7 @@ class NuspecGenerator(AbstractGenerator):
             return
 
         if (homepage := xml.find("nuspec:projectUrl", ns)) is not None:
-            hp_url = "".join(homepage.itertext())
+            hp_url = stringify(homepage)
             if (remote_id := extract_remote_id(hp_url)) is not None:
                 mxml.add_upstream_remote_id(remote_id)
 

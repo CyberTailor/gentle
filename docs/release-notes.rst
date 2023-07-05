@@ -17,6 +17,7 @@ Release Notes
 * New CLI option to skip slow generators
 * Add ``kde-invent`` remote-id
 * Trim ".git" suffix when extracting remote-id
+* Switch to the ``lxml`` library
 
 0.3.1
 -----

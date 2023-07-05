@@ -8,12 +8,13 @@ Installation
 Prerequisites
 -------------
 
-The only hard dependency is `Portage`_.
+The only hard dependencies are `Portage`_ and `lxml`_.
 
 All other dependencies are optional, you can find them in the
 :file:`pyproject.toml` file.
 
 .. _Portage: https://pypi.org/project/portage/
+.. _lxml: https://lxml.de/
 
 Gentoo
 ------
