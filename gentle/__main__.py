@@ -93,7 +93,9 @@ def main() -> None:
                 continue
             logger.info("Starting %s", cls.__name__)
             generator.update_metadata_xml(mxml)
-    mxml.dump()
+
+    if mxml.modified:
+        mxml.dump()
 
 
 if __name__ == "__main__":

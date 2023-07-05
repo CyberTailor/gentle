@@ -18,6 +18,7 @@ Release Notes
 * Add ``kde-invent`` remote-id
 * Trim ".git" suffix when extracting remote-id
 * Switch to the ``lxml`` library
+* Don't write :file:`metadata.xml` if there are no changes
 
 0.3.1
 -----

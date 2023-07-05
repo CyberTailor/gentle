@@ -27,10 +27,12 @@ class MetadataXML:
         self.xml: ET._ElementTree = ET.parse(self.xmlfile)
 
         self.upstream: Upstream = parser(xmlfile)
+        self.modified: bool = False
 
     def dump(self) -> None:
         """ Write :file:`metadata.xml` file """
         logger.info("Writing metadata.xml")
+        ET.indent(self.xml, space="\t", level=0)
         self.xml.write(self.xmlfile,
                        xml_declaration=True,
                        pretty_print=True,
@@ -51,6 +53,8 @@ class MetadataXML:
         upstream = self._make_upstream_element()
         upstream.append(person.to_xml())
 
+        self.modified = True
+
     def add_upstream_remote_id(self, remote_id: RemoteID) -> None:
         """ Add an item to the list of remote ids """
         if remote_id in self.upstream.remote_ids:
@@ -60,6 +64,8 @@ class MetadataXML:
         self.upstream.remote_ids.append(remote_id)
         upstream = self._make_upstream_element()
         upstream.append(remote_id.to_xml())
+
+        self.modified = True
 
     def set_upstream_bugs_to(self, url: str) -> None:
         """ Set upstream bugs-to URL """
@@ -73,6 +79,8 @@ class MetadataXML:
         bugs_to = ET.SubElement(upstream, "bugs-to")
         bugs_to.text = url
 
+        self.modified = True
+
     def set_upstream_changelog(self, url: str) -> None:
         """ Set upstream changelog URL """
         if self.upstream.changelog:
@@ -85,6 +93,8 @@ class MetadataXML:
         changelog = ET.SubElement(upstream, "changelog")
         changelog.text = url
 
+        self.modified = True
+
     def set_upstream_doc(self, url: str) -> None:
         """ Set upstream documentation URL """
         if self.upstream.doc:
@@ -96,6 +106,8 @@ class MetadataXML:
         upstream = self._make_upstream_element()
         doc = ET.SubElement(upstream, "doc")
         doc.text = url
+
+        self.modified = True
 
     def _make_upstream_element(self) -> ET._Element:
         if (upstream := self.xml.find("upstream")) is None:
