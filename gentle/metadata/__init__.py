@@ -57,8 +57,9 @@ class MetadataXML:
 
     def add_upstream_remote_id(self, remote_id: RemoteID) -> None:
         """ Add an item to the list of remote ids """
-        if remote_id in self.upstream.remote_ids:
-            return
+        for old_remote_id in self.upstream.remote_ids:
+            if remote_id.attr == old_remote_id.attr:
+                return
 
         logger.info("Adding remote id: %s", remote_id)
         self.upstream.remote_ids.append(remote_id)
