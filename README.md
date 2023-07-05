@@ -35,12 +35,15 @@ Language-independent:
 Dependencies
 ------------
 
-* [Portage](https://pypi.org/project/portage/)
-* [GNU Autoconf](https://www.gnu.org/software/autoconf/) *(optional)*
-* [pkginfo](https://pypi.org/project/pkginfo/) *(optional)*
-* [PyYAML](https://pyyaml.org/) *(optional)*
-* [rdflib](https://pypi.org/project/rdflib/) *(optional)*
-* [Tomli](https://pypi.org/project/tomli/) *(optional)*
+* Required:
+  * [Portage](https://pypi.org/project/portage/)
+  * [lxml](https://lxml.de/)
+* Optional:
+  * [GNU Autoconf](https://www.gnu.org/software/autoconf/)
+  * [pkginfo](https://pypi.org/project/pkginfo/)
+  * [PyYAML](https://pyyaml.org/)
+  * [rdflib](https://pypi.org/project/rdflib/)
+  * [Tomli](https://pypi.org/project/tomli/)
 
 
 Installing
