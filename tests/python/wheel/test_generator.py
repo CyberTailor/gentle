@@ -18,6 +18,7 @@ def test_pkg_none(mxml: MetadataXML):
     assert not gen.active
 
 
+@pytest.mark.net
 @pytest.mark.parametrize("dirname", ["pyproject.toml", "setup.cfg", "setup.py"])
 def test_pkg_empty(mxml: MetadataXML, dirname: str):
     gen = WheelGenerator(Path(__file__).parent / "pkg_empty" / dirname)
