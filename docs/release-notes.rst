@@ -9,6 +9,7 @@ Release Notes
 -----
 
 * New generator: Perl CPAN::Meta::Spec
+* New generator: Ruby Gem
 * Add command-line flags to control tests selection
 
 0.4.0
