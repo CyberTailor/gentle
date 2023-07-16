@@ -115,5 +115,5 @@ class CpanGenerator(AbstractGenerator):
         )
 
     @property
-    def slow(self):
+    def slow(self) -> bool:
         return not self.meta_json.is_file()
