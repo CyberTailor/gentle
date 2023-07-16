@@ -88,6 +88,7 @@ check_untyped_defs = true
 
 [[tool.mypy.overrides]]
 module = [
+    "_pytest.*",
     "portage.*",
     "tomllib.*",
     "xml.sax._exceptions",

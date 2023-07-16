@@ -5,6 +5,12 @@
 Release Notes
 =============
 
+0.5.0
+-----
+
+* New generator: Perl CPAN::Meta::Spec
+* Add command-line flags to control tests selection
+
 0.4.0
 -----
 * New generator: Apache Maven POM

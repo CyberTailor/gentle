@@ -22,6 +22,7 @@ Supported generators
 * Java ([Maven](https://maven.apache.org/pom.html))
 * .NET ([NuGet](https://learn.microsoft.com/en-us/nuget/reference/nuspec))
 * Node.js ([npm](https://docs.npmjs.com/files/package.json/), [Bower](https://github.com/bower/spec/blob/master/json.md))
+* Perl ([CPAN::Meta::Spec](http://search.cpan.org/perldoc?CPAN::Meta::Spec))
 * PHP ([Composer](https://getcomposer.org/doc/04-schema.md), [PEAR/PECL](https://pear.php.net/manual/en/guide.developers.package2.php))
 * Python ([PEP 621](https://peps.python.org/pep-0621/), [PEP 643](https://peps.python.org/pep-0643/), [Setuptools](https://setuptools.pypa.io/en/latest/userguide/declarative_config.html))
 * Rust ([Cargo](https://doc.rust-lang.org/cargo/reference/manifest.html))
