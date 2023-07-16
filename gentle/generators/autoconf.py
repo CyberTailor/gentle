@@ -34,15 +34,10 @@ class AutoconfGenerator(AbstractGenerator):
 
         self.autoconf = shutil.which("autoconf")
 
-    def generate_conf_sh(self) -> None:
-        if self.conf_sh.is_file():
-            return
-
-        with self.srcdir:
-            subprocess.run([str(self.autoconf)], check=False)
-
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
-        self.generate_conf_sh()
+        if not self.conf_sh.is_file() and self.conf_ac.is_file():
+            subprocess.run([str(self.autoconf)], cwd=self.srcdir, check=False)
+
         if not self.conf_sh.is_file():
             return
 
