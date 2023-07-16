@@ -20,6 +20,7 @@ import gentle.generators.autoconf
 import gentle.generators.bower
 import gentle.generators.cargo
 import gentle.generators.composer
+import gentle.generators.cpan
 import gentle.generators.doap
 import gentle.generators.hpack
 import gentle.generators.npm
