@@ -21,6 +21,7 @@ from gentle.metadata.types import Person
 from gentle.metadata.utils import extract_remote_id
 
 try:
+    import rdflib.exceptions
     from rdflib import Graph
     from rdflib.namespace import DOAP, FOAF
     _HAS_RDFLIB = True
@@ -38,7 +39,7 @@ class DoapGenerator(AbstractGenerator):
         project = Graph(base="doap", bind_namespaces="rdflib")
         try:
             project.parse(self.doap_files[0], format="xml")
-        except SAXException:
+        except (SAXException, rdflib.exceptions.ParserError):
             return
 
         maint_key = DOAP.maintainer
