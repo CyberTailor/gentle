@@ -14,11 +14,11 @@ If you want to learn about how to use gentle, check out the following resources:
 
 If you need help, or want to talk to the developers, use our chat rooms:
 
-* IRC: `#gentle`_ at ``irc.libera.char``
-* Matrix: `#gentle:libera.chat`_
+* IRC: `#gentle`_ at ``irc.libera.chat``
+* Matrix: `#gentle:sysrq.in`_
 
 .. _#gentle: https://web.libera.chat/?channels=#gentle
-.. _#gentle\:libera.chat: https://matrix.to/#/#gentle:libera.chat
+.. _#gentle\:sysrq.in: https://matrix.to/#/#gentle:sysrq.in
 
 If you find any bugs, please report them on `Bugzilla`_.
 

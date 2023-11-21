@@ -103,7 +103,7 @@ You can join the `#gentle` channel either on [Libera Chat][libera] or
 [via Matrix][matrix].
 
 [libera]: https://libera.chat/
-[matrix]: https://matrix.to/#/#gentle:libera.chat
+[matrix]: https://matrix.to/#/#gentle:sysrq.in
 
 
 License
