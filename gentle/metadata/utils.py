@@ -60,7 +60,7 @@ remote_ids = {
     "sourcehut":
         re.compile(r"^https?://(git[.])?sr.ht/(?P<v>\[^\s/]+?/\[^\s/]+?)([.]git)?(/.*)?$"),
     "vim":
-        re.compile(r"^https?://vim.org/scripts/script.php?script_id=(?P<v>\d+?)$")
+        re.compile(r"^https?://www.vim.org/scripts/script.php?script_id=(?P<v>\d+?)$")
 }
 
 
