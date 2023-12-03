@@ -23,3 +23,15 @@ steps:
     commands:
       - pip install tox
       - tox run
+
+---
+kind: pipeline
+type: docker
+name: test-py312
+
+steps:
+  - name: test
+    image: python:3.12
+    commands:
+      - pip install tox
+      - tox run
