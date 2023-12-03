@@ -5,8 +5,11 @@ kind: pipeline
 type: docker
 name: default
 
+workspace:
+  path: /tests
+
 steps:
   - name: test
-    image: 31z4/tox
+    image: 31z4/tox:4
     commands:
       - tox run
