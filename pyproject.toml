@@ -19,14 +19,17 @@ dependencies = [
     "lxml"
 ]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
     "Intended Audience :: Developers",
     "License :: DFSG approved",
     "Operating System :: POSIX",
+    "Programming Language :: Python :: 3 :: Only",
     "Topic :: System :: Software Distribution",
-    "Topic :: Utilities"
+    "Topic :: Utilities",
+    "Typing :: Typed"
 ]
+keywords = ["gentoo", "ebuild", "metadata", "upstream", "maintainer"]
 
 [project.optional-dependencies]
 # PKG-INFO
