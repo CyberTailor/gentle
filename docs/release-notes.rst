@@ -5,12 +5,13 @@
 Release Notes
 =============
 
-0.5.0
+0.4.1
 -----
 
 * New generator: Perl CPAN::Meta::Spec
 * New generator: Ruby Gem
-* Add command-line flags to control tests selection
+* [Docs] Fix Sphinx documentation
+* [Tests] Add command-line flags to control tests selection
 
 0.4.0
 -----
