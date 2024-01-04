@@ -56,6 +56,20 @@ autodoc_default_flags = [
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'insipid'
+html_permalinks_icon = '#'
+html_theme_options = {
+    'globaltoc_maxdepth': 3,
+    'right_buttons': ['git-button.html'],
+}
+html_sidebars = {
+    '**': [
+        'globaltoc.html',
+    ]
+}
+html_context = {
+    'git_repo_url': 'https://git.sysrq.in/gentle/about/',
+}
+
 html_static_path = ['_static']
 html_title = f'{project} {release}'
 html_show_sourcelink = False
