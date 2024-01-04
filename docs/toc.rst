@@ -6,7 +6,6 @@ Table of Contents
 =================
 
 .. toctree::
-
    :caption: Home
 
    index
