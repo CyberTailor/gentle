@@ -11,8 +11,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'gentle'
-copyright = '2022-2023, Anna <cyber@sysrq.in>'
 author = 'Anna <cyber@sysrq.in>'
+copyright = f'2022-2024, {author}'
 release = '0.4.0'
 
 # -- General configuration ---------------------------------------------------
@@ -21,14 +21,14 @@ release = '0.4.0'
 extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.autodoc',
-    'sphinx-prompt',
+    'sphinx_prompt',
 ]
 
 try:
     import notfound.extension
     extensions.append('notfound.extension')
 
-    notfound_no_urls_prefix = True
+    notfound_urls_prefix = None
 except ModuleNotFoundError:
     pass
 
@@ -61,16 +61,10 @@ html_theme_options = {
     'globaltoc_maxdepth': 3,
     'right_buttons': ['git-button.html'],
 }
-html_sidebars = {
-    '**': [
-        'globaltoc.html',
-    ]
-}
 html_context = {
     'git_repo_url': 'https://git.sysrq.in/gentle/about/',
 }
 
 html_static_path = ['_static']
 html_title = f'{project} {release}'
-html_show_sourcelink = False
 html_baseurl = 'https://gentle.sysrq.in/'
