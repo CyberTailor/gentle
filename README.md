@@ -1,10 +1,11 @@
-<!-- SPDX-FileCopyrightText: 2023 Anna <cyber@sysrq.in> -->
+<!-- SPDX-FileCopyrightText: 2023-2024 Anna <cyber@sysrq.in> -->
 <!-- SPDX-License-Identifier: CC0-1.0 -->
 
 gentle
 ======
 
 [![Build Status](https://drone.tildegit.org/api/badges/CyberTaIlor/gentle/status.svg)](https://drone.tildegit.org/CyberTaIlor/gentle)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/8269/badge)](https://www.bestpractices.dev/projects/8269)
 
 **Gent**oo **L**azy **E**ntry — a `metadata.xml` generator.
 
