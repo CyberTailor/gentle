@@ -74,8 +74,9 @@ You can track new releases using an [atom feed][atom] provided by GitHub.
 Contributing
 ------------
 
-Patches and pull requests are welcome. Please use either [git-send-email(1)][1]
-or [git-request-pull(1)][2], addressed to <cyber@sysrq.in>.
+Patches and pull requests are welcome. Please use either
+[git-send-email(1)][git-send-email] or [git-request-pull(1)][git-request-pull],
+addressed to <cyber@sysrq.in>.
 
 If you prefer GitHub-style workflow, use the [mirror repo][gh] to send pull
 requests.
@@ -92,9 +93,14 @@ sure to reference any bug reports and other contributors.  Make
 sure the correct authorship appears.
 ```
 
-[1]: https://git-send-email.io/
-[2]: https://git-scm.com/docs/git-request-pull
+Code style is whatever the almighty linters say, should be at least
+[PEP 8][pep8].
+
+
+[git-send-email]: https://git-send-email.io/
+[git-request-pull]: https://git-scm.com/docs/git-request-pull
 [gh]: http://github.com/cybertailor/gentle
+[pep8]: https://peps.python.org/pep-0008/
 
 
 IRC

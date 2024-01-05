@@ -60,3 +60,10 @@ Adding a new generator
 4. Write regression tests for your new generator.
 
 Feel free to copy/paste from existing sources, I do the same.
+
+Code style
+----------
+
+Whatever the almighty linters say, should be at least `PEP 8`_.
+
+.. _PEP 8: https://peps.python.org/pep-0008/
