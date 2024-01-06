@@ -1,10 +1,11 @@
 # SPDX-License-Identifier: WTFPL
-# SPDX-FileCopyrightText: 2023 Anna <cyber@sysrq.in>
+# SPDX-FileCopyrightText: 2023-2024 Anna <cyber@sysrq.in>
 # No warranty
 
 from copy import deepcopy
 from pathlib import Path
 
+import build.env
 import pytest
 
 from gentle.generators.python.wheel import WheelGenerator
@@ -18,9 +19,13 @@ def test_pkg_none(mxml: MetadataXML):
     assert not gen.active
 
 
-@pytest.mark.net
 @pytest.mark.parametrize("dirname", ["pyproject.toml", "setup.cfg", "setup.py"])
-def test_pkg_empty(mxml: MetadataXML, dirname: str):
+def test_pkg_empty(monkeypatch: pytest.MonkeyPatch, mxml: MetadataXML, dirname: str):
+    # calls to 'pip' can make this test fail
+    def blackhole(*args, **kwargs):
+        pass
+    monkeypatch.setattr(build.env, "_subprocess", blackhole)
+
     gen = WheelGenerator(Path(__file__).parent / "pkg_empty" / dirname)
     assert gen.active
 
