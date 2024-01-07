@@ -25,6 +25,13 @@ gentle is packaged in the Gentoo repository.
 
    emerge app-portage/gentle
 
+Other distributions
+-------------------
+
+.. image:: https://repology.org/badge/vertical-allrepos/gentle-mxml.svg
+   :alt: Packaging status on Repology
+   :target: https://repology.org/project/gentle-mxml/versions
+
 Manual installation
 -------------------
 
