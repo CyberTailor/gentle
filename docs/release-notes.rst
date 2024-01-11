@@ -1,9 +1,14 @@
-.. SPDX-FileCopyrightText: 2023 Anna <cyber@sysrq.in>
+.. SPDX-FileCopyrightText: 2023-2024 Anna <cyber@sysrq.in>
 .. SPDX-License-Identifier: WTFPL
 .. No warranty.
 
 Release Notes
 =============
+
+0.4.2
+-----
+
+* Fix metadata schema violation for URLs with whitespace in them
 
 0.4.1
 -----

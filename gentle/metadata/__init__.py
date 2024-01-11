@@ -29,6 +29,17 @@ class MetadataXML:
         self.upstream: Upstream = parser(xmlfile)
         self.modified: bool = False
 
+        self._whitespace_map = {
+            " ": "%20",
+            "\n": "%0D",
+            "\t": "%09",
+        }
+
+    def _encode_whitespace(self, url: str) -> str:
+        for char, code in self._whitespace_map.items():
+            url = url.replace(char, code)
+        return url
+
     def dump(self) -> None:
         """ Write :file:`metadata.xml` file """
         logger.info("Writing metadata.xml")
@@ -70,6 +81,7 @@ class MetadataXML:
 
     def set_upstream_bugs_to(self, url: str) -> None:
         """ Set upstream bugs-to URL """
+        url = self._encode_whitespace(url)
         if self.upstream.bugs_to:
             return
 
@@ -84,6 +96,7 @@ class MetadataXML:
 
     def set_upstream_changelog(self, url: str) -> None:
         """ Set upstream changelog URL """
+        url = self._encode_whitespace(url)
         if self.upstream.changelog:
             return
 
@@ -98,6 +111,7 @@ class MetadataXML:
 
     def set_upstream_doc(self, url: str) -> None:
         """ Set upstream documentation URL """
+        url = self._encode_whitespace(url)
         if self.upstream.doc:
             return
 
