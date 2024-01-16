@@ -5,10 +5,11 @@
 Release Notes
 =============
 
-0.4.2
+1.0.0
 -----
 
 * Fix metadata schema violation for URLs with whitespace in them
+* [Ruby Gem] Support extracting metadata from Gemspec files, not just Gems
 
 0.4.1
 -----

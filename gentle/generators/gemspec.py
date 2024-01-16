@@ -3,16 +3,19 @@
 # No warranty
 
 """
-Metadata XML generator for Crystal Shards.
+Metadata XML generator for Ruby Gems.
 
 The following attributes are supported:
 
-* Upstream maintainer(s)
+* Upstream bug tracker
+* Upstream changelog
 * Upstream documentation
 * Remote ID
 """
 
 import logging
+import shutil
+import subprocess
 from pathlib import Path
 
 from gentle.generators import AbstractGenerator
@@ -47,12 +50,27 @@ logger = logging.getLogger("gemspec")
 
 class GemspecGenerator(AbstractGenerator):
     def __init__(self, srcdir: Path):
+        self.srcdir = srcdir
+
+        self.gemspec_files = list(srcdir.glob("*.gemspec"))
         self.metadata_yml = srcdir / "all" / "metadata"
 
+        self.ruby = shutil.which("ruby")
+
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
-        with open(self.metadata_yml) as file:
-            if (metadata := yaml.load(file, Loader)) is None:
-                return
+        if self.metadata_yml.is_file():
+            with open(self.metadata_yml, "rb") as file:
+                data = file.read()
+        else:
+            gemspec = self.gemspec_files[0]
+            code = f'print Gem::Specification.load("{gemspec}").to_yaml'
+            data = subprocess.run([str(self.ruby), "-e", code],
+                                  cwd=self.srcdir,
+                                  check=False,
+                                  capture_output=True).stdout
+
+        if (metadata := yaml.load(data, Loader)) is None:
+            return
 
         if metadata.homepage:
             logger.info("Found homepage: %s", metadata.homepage)
@@ -77,4 +95,13 @@ class GemspecGenerator(AbstractGenerator):
 
     @property
     def active(self) -> bool:
-        return _HAS_PYYAML and self.metadata_yml.is_file()
+        return (
+            _HAS_PYYAML
+            and (
+                self.metadata_yml.is_file()
+                or (
+                    len(self.gemspec_files) == 1
+                    and self.ruby is not None
+                )
+            )
+        )

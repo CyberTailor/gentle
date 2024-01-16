@@ -38,3 +38,30 @@ def test_pkg(mxml: MetadataXML, dirname: str):
     mxml_prev = deepcopy(mxml)
     gen.update_metadata_xml(mxml)
     assert compare_mxml(mxml_prev, mxml) == ""
+
+
+@pytest.mark.ruby
+def test_pkg_spec_empty(mxml: MetadataXML):
+    gen = GemspecGenerator(Path(__file__).parent / "pkg_spec" / "pkg_empty")
+    assert gen.active
+
+    mxml_old = deepcopy(mxml)
+    gen.update_metadata_xml(mxml)
+    assert compare_mxml(mxml_old, mxml) == ""
+
+
+@pytest.mark.ruby
+@pytest.mark.parametrize("dirname", ["rubygems"])
+def test_pkg_spec(mxml: MetadataXML, dirname: str):
+    directory = Path(__file__).parent / "pkg_spec" / dirname
+
+    gen = GemspecGenerator(directory)
+    assert gen.active
+
+    gen.update_metadata_xml(mxml)
+    with open(directory / "metadata.xml") as file:
+        assert mxml.dumps() == file.read().rstrip()
+
+    mxml_prev = deepcopy(mxml)
+    gen.update_metadata_xml(mxml)
+    assert compare_mxml(mxml_prev, mxml) == ""
