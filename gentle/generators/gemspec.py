@@ -13,6 +13,7 @@ The following attributes are supported:
 * Remote ID
 """
 
+import io
 import logging
 import shutil
 import subprocess
@@ -63,8 +64,9 @@ class GemspecGenerator(AbstractGenerator):
                 data = file.read()
         else:
             gemspec = self.gemspec_files[0]
-            code = f'print Gem::Specification.load("{gemspec}").to_yaml'
+            code = "print Gem::Specification.load(gets.chomp).to_yaml"
             data = subprocess.run([str(self.ruby), "-e", code],
+                                  stdin=io.BytesIO(str(gemspec).encode()),
                                   cwd=self.srcdir,
                                   check=False,
                                   capture_output=True).stdout
