@@ -23,3 +23,14 @@ If you need help, or want to talk to the developers, use our chat rooms:
 If you find any bugs, please report them on `Bugzilla`_.
 
 .. _Bugzilla: https://bugs.sysrq.in/enter_bug.cgi?product=Software&component=gentle
+
+You might also like
+-------------------
+
+* `metagen`_: companion utility that generates basic package metadata.
+
+* `upstream-ontologist`_: distro-agnostic interface for finding metadata about
+  upstream software projects.
+
+.. _metagen: https://cgit.gentoo.org/proj/metagen.git
+.. _upstream-ontologist: https://github.com/jelmer/upstream-ontologist
