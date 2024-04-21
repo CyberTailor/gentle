@@ -13,20 +13,12 @@ The following attributes are supported:
 """
 
 import logging
+import tomllib
 from pathlib import Path
 
 from gentle.generators import AbstractGenerator
 from gentle.metadata import MetadataXML
 from gentle.metadata.utils import extract_name_email, extract_remote_id
-
-try:
-    try:
-        import tomllib
-    except ModuleNotFoundError:
-        import tomli as tomllib  # type: ignore
-    _HAS_TOMLLIB = True
-except ModuleNotFoundError:
-    _HAS_TOMLLIB = False
 
 logger = logging.getLogger("cargo")
 
@@ -85,4 +77,4 @@ class CargoGenerator(AbstractGenerator):
 
     @property
     def active(self) -> bool:
-        return _HAS_TOMLLIB and self.cargo_toml.is_file()
+        return self.cargo_toml.is_file()
