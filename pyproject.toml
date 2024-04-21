@@ -37,7 +37,7 @@ pkginfo = ["pkginfo"]
 # DOAP
 rdf = ["rdflib"]
 # Python packaging
-wheel = ["build"]
+wheel = ["build>=1.2.0"]
 # package.yaml, pubspec.yaml, shard.yml
 yaml = ["PyYAML"]
 

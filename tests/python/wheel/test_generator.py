@@ -24,7 +24,7 @@ def test_pkg_empty(monkeypatch: pytest.MonkeyPatch, mxml: MetadataXML, dirname: 
     # calls to 'pip' can make this test fail
     def blackhole(*args, **kwargs):
         pass
-    monkeypatch.setattr(build.env, "_subprocess", blackhole)
+    monkeypatch.setattr(build.env, "run_subprocess", blackhole)
 
     gen = WheelGenerator(Path(__file__).parent / "pkg_empty" / dirname)
     assert gen.active
