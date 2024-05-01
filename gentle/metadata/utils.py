@@ -2,14 +2,18 @@
 # SPDX-FileCopyrightText: 2023 Anna <cyber@sysrq.in>
 # No warranty
 
-""" Utilities for metadata generators """
+"""
+Utilities for metadata generators.
+"""
 
 import re
 
 from gentle.metadata import Person, RemoteID
 
+# Regular expression for matching "name <email>" pairs.
 author_re = re.compile(r"(?P<name>.+?)\s*<(?P<email>.+?@.+?)>")
 
+# Mapping of remote-ids to regular expressions matching them.
 remote_ids = {
     "bitbucket":
         re.compile(r"^https?://bitbucket.org/(?P<v>[^\s/]+?/[^\s/]+?)([.]git)?(/.*)?$"),
@@ -66,9 +70,11 @@ remote_ids = {
 
 def extract_name_email(author: str) -> Person | None:
     """
-    Make a :class:`Person` object from a string.
+    Make a :py:class:`Person` object from a string.
 
     :param author: string in the ``name <email>`` format
+
+    :returns: person object
 
     >>> extract_name_email("Foo Bar <foobar@example.com>")
     Person(name='Foo Bar', email='foobar@example.com', status=<MaintainerStatus.NONE: 1>)
@@ -85,6 +91,8 @@ def extract_remote_id(url: str) -> RemoteID | None:
     Make a :class:`RemoteID` object from a string.
 
     :param url: project's source repository
+
+    :returns: remote-id object
 
     >>> extract_remote_id("https://pypi.org/project/foo-bar")
     RemoteID(attr='pypi', value='foo-bar')

@@ -2,6 +2,10 @@
 # SPDX-FileCopyrightText: 2022-2023 Anna <cyber@sysrq.in>
 # No warranty
 
+"""
+Implementation of package management features with Portage API.
+"""
+
 import logging
 import os
 import pwd
@@ -21,10 +25,12 @@ def src_unpack(ebuild: Path, tmpdir: str) -> Path:
     """
     Unpack the sources using Portage.
 
-    :param ebuild: Path to the ebuild file
-    :param tmpdir: Temporary directory
-    :return: The value of ``${S}``
+    :param ebuild: path to the ebuild file
+    :param tmpdir: temporary directory
+
+    :return: value of ``${S}``
     """
+
     ebuild = ebuild.resolve()
     portdir = str(ebuild.parents[2])
 
@@ -64,9 +70,11 @@ def src_unpack(ebuild: Path, tmpdir: str) -> Path:
 
 def parse_mxml(xmlfile: Path) -> Upstream:
     """
-    Parse :file:`metadata.xml` files using Portage
+    Parse :file:`metadata.xml` files using Portage.
 
-    :param xmlfile: Path to the :file:`metadata.xml` file
+    :param xmlfile: path to the :file:`metadata.xml` file
+
+    :returns: upstream metadata information
     """
 
     result = Upstream()

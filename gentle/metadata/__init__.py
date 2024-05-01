@@ -2,7 +2,9 @@
 # SPDX-FileCopyrightText: 2023 Anna <cyber@sysrq.in>
 # No warranty
 
-""" Metadata routines """
+"""
+Metadata processing routines.
+"""
 
 import logging
 from pathlib import Path
@@ -16,13 +18,16 @@ logger = logging.getLogger("metadata")
 
 
 class MetadataXML:
-    """ Modify :file:`metadata.xml` files """
+    """
+    Modify :file:`metadata.xml` files.
+    """
 
     def __init__(self, xmlfile: Path, parser: Callable[[Path], Upstream]):
         """
-        :param xmlfile: Path to the :file:`metadata.xml` file
-        :param upstream: Pre-parsed :class:`Upstream` object
+        :param xmlfile: path to the :file:`metadata.xml` file
+        :param upstream: pre-parsed :class:`Upstream` object
         """
+
         self.xmlfile: Path = xmlfile
         self.xml: ET._ElementTree = ET.parse(self.xmlfile)
 
@@ -41,7 +46,10 @@ class MetadataXML:
         return url
 
     def dump(self) -> None:
-        """ Write :file:`metadata.xml` file """
+        """
+        Write :file:`metadata.xml` file.
+        """
+
         logger.info("Writing metadata.xml")
         ET.indent(self.xml, space="\t", level=0)
         self.xml.write(self.xmlfile,
@@ -50,12 +58,22 @@ class MetadataXML:
                        encoding="UTF-8")
 
     def dumps(self) -> str:
-        """ Convert the object to text """
+        """
+        Convert the object to text.
+
+        :returns: XML data as text
+        """
+
         ET.indent(self.xml, space="\t", level=0)
         return ET.tostring(self.xml.getroot(), encoding="unicode")
 
     def add_upstream_maintainer(self, person: Person) -> None:
-        """ Add a person to the list of upstream maintainers """
+        """
+        Add a person to the list of upstream maintainers.
+
+        :param person: upstrem maintainer
+        """
+
         if person in self.upstream.maintainers:
             return
 
@@ -67,7 +85,12 @@ class MetadataXML:
         self.modified = True
 
     def add_upstream_remote_id(self, remote_id: RemoteID) -> None:
-        """ Add an item to the list of remote ids """
+        """
+        Add an item to the list of remote ids.
+
+        :param remote_id: new remote id
+        """
+
         for old_remote_id in self.upstream.remote_ids:
             if remote_id.attr == old_remote_id.attr:
                 return
@@ -80,7 +103,12 @@ class MetadataXML:
         self.modified = True
 
     def set_upstream_bugs_to(self, url: str) -> None:
-        """ Set upstream bugs-to URL """
+        """
+        Set upstream bugs-to URL.
+
+        :param url: new URL
+        """
+
         url = self._encode_whitespace(url)
         if self.upstream.bugs_to:
             return
@@ -95,7 +123,12 @@ class MetadataXML:
         self.modified = True
 
     def set_upstream_changelog(self, url: str) -> None:
-        """ Set upstream changelog URL """
+        """
+        Set upstream changelog URL.
+
+        :param url: new URL
+        """
+
         url = self._encode_whitespace(url)
         if self.upstream.changelog:
             return
@@ -110,7 +143,12 @@ class MetadataXML:
         self.modified = True
 
     def set_upstream_doc(self, url: str) -> None:
-        """ Set upstream documentation URL """
+        """
+        Set upstream documentation URL.
+
+        :param url: new URL
+        """
+
         url = self._encode_whitespace(url)
         if self.upstream.doc:
             return

@@ -2,7 +2,9 @@
 # SPDX-FileCopyrightText: 2023 Anna <cyber@sysrq.in>
 # No warranty
 
-""" Types for working with Gentoo package metadata """
+"""
+Types for working with Gentoo package metadata.
+"""
 
 from dataclasses import dataclass, field
 from enum import Enum, auto
@@ -11,19 +13,33 @@ import lxml.etree as ET
 
 
 class MaintainerStatus(Enum):
-    """ Maintainer status enum """
+    """
+    Maintainer status.
+    """
 
+    #: Not specified.
     NONE = auto()
+
+    #: Active.
     ACTIVE = auto()
+
+    #: Inactive.
     INACTIVE = auto()
 
 
 @dataclass
 class Person:
-    """ Representation of a person"""
+    """
+    Representation of a person.
+    """
 
+    #: Maintainer name.
     name: str = field(default="", compare=False)
+
+    #: Maintainer email.
     email: str = ""
+
+    #: Maintainer activity status.
     status: MaintainerStatus = MaintainerStatus.NONE
 
     def __str__(self) -> str:
@@ -37,9 +53,13 @@ class Person:
 
     def to_xml(self, attrib: dict | None = None) -> ET._Element:
         """
-        :param attrib: attributes for the ``<maintainer>`` tag
+        Make an XML ``<maintainer>`` tag.
+
+        :param attrib: attributes for the tag
+
         :return: :file:`metadata.xml` respresentation of a person
         """
+
         attrib = attrib or {}
         match self.status:
             case MaintainerStatus.ACTIVE:
@@ -60,9 +80,14 @@ class Person:
 
 @dataclass
 class RemoteID:
-    """ Representation of a remote ID """
+    """
+    Representation of a Remote ID.
+    """
 
+    #: Site name.
     attr: str
+
+    #: Package identificator on the site.
     value: str
 
     def __str__(self) -> str:
@@ -70,8 +95,11 @@ class RemoteID:
 
     def to_xml(self) -> ET._Element:
         """
+        Make an XML ``<remote-id>`` tag.
+
         :return: :file:`metadata.xml` respresentation of a remote id
         """
+
         remote_elem = ET.Element("remote-id", type=self.attr)
         remote_elem.text = self.value
         return remote_elem
@@ -79,10 +107,21 @@ class RemoteID:
 
 @dataclass
 class Upstream:
-    """ Representation of upstream metadata """
+    """
+    Representation of upstream metadata.
+    """
 
+    #: Upstream maintainers.
     maintainers: list[Person] = field(default_factory=list)
+
+    #: Upstream changelog.
     changelog: str | None = None
+
+    #: Upstream documentation.
     doc: str | None = None
+
+    #: Upstream bug tracker.
     bugs_to: str | None = None
+
+    #: Upstream identificators on third-party sites.
     remote_ids: list[RemoteID] = field(default_factory=list)
