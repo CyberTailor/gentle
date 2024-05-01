@@ -21,6 +21,8 @@ release = '1.0.0'
 extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.autodoc',
+    'sphinx.ext.extlinks',
+    'sphinx.ext.intersphinx',
     'sphinx_prompt',
 ]
 
@@ -44,13 +46,16 @@ except ModuleNotFoundError:
 root_doc = 'toc'
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+manpages_url = 'https://docs.sysrq.in/{path}'
 
-autodoc_default_flags = [
-    "members",
-    "show-inheritance",
-    "inherited-members",
-    "undoc-members",
-]
+extlinks = {
+    'bug': ('https://bugs.sysrq.in/show_bug.cgi?id=%s', 'bug #%s'),
+    'gitweb': (f'https://git.sysrq.in/{project}/tree/%s', '%s'),
+    'pypi': ('https://pypi.org/project/%s/', '%s'),
+}
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3/', None),
+}
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -60,6 +65,11 @@ html_permalinks_icon = '#'
 html_theme_options = {
     'globaltoc_maxdepth': 3,
     'right_buttons': ['git-button.html'],
+}
+html_sidebars = {
+    '**': [
+        'globaltoc.html',
+    ]
 }
 html_context = {
     'git_repo_url': 'https://git.sysrq.in/gentle/about/',
