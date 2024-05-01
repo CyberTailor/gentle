@@ -12,7 +12,7 @@ from typing import Type
 
 from gentle.metadata import MetadataXML
 
-_GentleGenerator = Type["AbstractGenerator"]
+GentleGenerator = Type["AbstractGenerator"]
 
 
 class AbstractGenerator(ABC):
@@ -20,10 +20,10 @@ class AbstractGenerator(ABC):
     Generic class for metadata generators.
     """
 
-    _subclasses: list[_GentleGenerator] = []
+    _subclasses: list[GentleGenerator] = []
 
     @classmethod
-    def get_generator_subclasses(cls) -> list[_GentleGenerator]:
+    def get_generator_subclasses(cls) -> list[GentleGenerator]:
         """
         Get generators inheriting from this abstract class.
 

@@ -2,8 +2,6 @@
 # SPDX-FileCopyrightText: 2022-2023 Anna <cyber@sysrq.in>
 # No warranty
 
-# pylint: disable=unused-import
-
 import argparse
 import importlib.util
 import logging
@@ -13,7 +11,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 import gentle
-from gentle.generators import AbstractGenerator, GeneratorClass
+from gentle.generators import AbstractGenerator, GentleGenerator
 from gentle.metadata import MetadataXML
 
 import gentle.generators.autoconf
@@ -81,7 +79,7 @@ def main() -> None:
             sys.exit(1)
 
         srcdir = src_unpack(args.ebuild, tmpdir)
-        cls: GeneratorClass
+        cls: GentleGenerator
         for cls in AbstractGenerator.get_generator_subclasses():
             generator = cls(srcdir)
             if not generator.active:
