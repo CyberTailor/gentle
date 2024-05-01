@@ -36,8 +36,6 @@ import gentle.generators.shards
 
 _HAS_PORTAGE = importlib.util.find_spec("portage") is not None
 
-_HAS_BUILD = importlib.util.find_spec("build") is not None
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("main")
 
@@ -53,10 +51,6 @@ def main() -> None:
 
     if len(pm) == 0:
         raise RuntimeError("No package manager installed. Aborting")
-
-    py_api = ["simple"]
-    if _HAS_BUILD:
-        py_api.insert(0, "wheel")
 
     parser = argparse.ArgumentParser("gentle", description=gentle.__doc__)
     parser.add_argument("ebuild", type=Path, help="path to the ebuild file")
