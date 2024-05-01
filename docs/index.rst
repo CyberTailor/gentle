@@ -7,7 +7,7 @@ Introduction
 
 gentle is a :file:`metadata.xml` generator for Gentoo ebuilds.
 
-If you want to learn about how to use gentle, check out the following resources:
+If you want to learn how to use gentle, check out the following resources:
 
 * :doc:`installation`
 * :doc:`getting-started`
@@ -27,9 +27,9 @@ If you find any bugs, please report them on `Bugzilla`_.
 You might also like
 -------------------
 
-* `metagen`_: companion utility that generates basic package metadata.
+- `metagen`_: companion utility that generates basic package metadata.
 
-* `upstream-ontologist`_: distro-agnostic interface for finding metadata about
+- `upstream-ontologist`_: distro-agnostic interface for finding metadata about
   upstream software projects.
 
 .. _metagen: https://cgit.gentoo.org/proj/metagen.git
