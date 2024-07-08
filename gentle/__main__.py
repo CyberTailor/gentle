@@ -9,9 +9,10 @@ import os
 import sys
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from typing import Type
 
 import gentle
-from gentle.generators import AbstractGenerator, GentleGenerator
+from gentle.generators import AbstractGenerator
 from gentle.metadata import MetadataXML
 
 import gentle.generators.autoconf
@@ -79,7 +80,7 @@ def main() -> None:
             sys.exit(1)
 
         srcdir = src_unpack(args.ebuild, tmpdir)
-        cls: GentleGenerator
+        cls: Type[AbstractGenerator]
         for cls in AbstractGenerator.get_generator_subclasses():
             generator = cls(srcdir)
             if not generator.active:
