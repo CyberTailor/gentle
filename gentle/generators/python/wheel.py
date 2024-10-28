@@ -15,8 +15,10 @@ The following attributes are supported:
 """
 
 import logging
-from importlib.metadata import PackageMetadata
+import shutil
+from importlib.metadata import PathDistribution, PackageMetadata
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from gentle.generators import AbstractGenerator
 from gentle.generators.python import (
@@ -29,8 +31,9 @@ from gentle.metadata import MetadataXML
 from gentle.metadata.utils import extract_name_email, extract_remote_id
 
 try:
-    from build import BuildException, BuildBackendException
-    from build.util import project_wheel_metadata
+    import pyproject_hooks
+    from build import BuildException, BuildBackendException, ProjectBuilder
+    from build.env import DefaultIsolatedEnv
     _HAS_BUILD = True
 except ModuleNotFoundError:
     _HAS_BUILD = False
@@ -48,10 +51,22 @@ class WheelGenerator(AbstractGenerator):
 
         self.pkg_info = srcdir / "PKG-INFO"
 
+    def project_wheel_metadata(self) -> PackageMetadata:
+        with DefaultIsolatedEnv(installer="uv") as env:
+            builder = ProjectBuilder.from_isolated_env(
+                env, self.srcdir,
+                runner=pyproject_hooks.quiet_subprocess_runner,
+            )
+            env.install(builder.build_system_requires)
+            env.install(builder.get_requires_for_build("wheel"))
+            with TemporaryDirectory(prefix="gentle-wheel-") as tmpdir:
+                path = Path(builder.metadata_path(tmpdir))
+                return PathDistribution(path).metadata
+
     # pylint: disable=too-many-branches
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
         try:
-            metadata: PackageMetadata = project_wheel_metadata(self.srcdir)
+            metadata: PackageMetadata = self.project_wheel_metadata()
         except (BuildException, BuildBackendException):
             return
 
@@ -98,12 +113,13 @@ class WheelGenerator(AbstractGenerator):
     def active(self) -> bool:
         return (
             _HAS_BUILD
+            and not self.pkg_info.is_file()
+            and shutil.which("uv") is not None
             and (
                 self.pyproject_toml.is_file()
                 or self.setup_cfg.is_file()
                 or self.setup_py.is_file()
             )
-            and not self.pkg_info.is_file()
         )
 
     @property

@@ -5,6 +5,16 @@
 Release Notes
 =============
 
+1.0.0-next
+----------
+
+*Generators changelog:*
+
+- **Python Wheel**:
+
+  - Switch from :pypi:`pip` to :pypi:`uv` for installing build requirements
+    (:gentoobug:`934922`).
+
 1.0.0
 -----
 
