@@ -56,7 +56,7 @@ Adding a new generator
 
 1. Create a new Python file in the :file:`gentle/generators` directory.
 2. Implement all ``AbstractGenerator`` methods.
-3. Import your new module in the :file:`gentle/__main__.py` file.
+3. Add your new class as an entry point in the :file:`pyproject.toml` file.
 4. Write regression tests for your new generator.
 
 Feel free to copy/paste from existing sources, I do the same.

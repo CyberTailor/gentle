@@ -3,35 +3,17 @@
 # No warranty
 
 import argparse
+import importlib.metadata
 import importlib.util
 import logging
 import os
 import sys
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from typing import Type
 
 import gentle
 from gentle.generators import AbstractGenerator
 from gentle.metadata import MetadataXML
-
-import gentle.generators.autoconf
-import gentle.generators.bower
-import gentle.generators.cargo
-import gentle.generators.composer
-import gentle.generators.cpan
-import gentle.generators.doap
-import gentle.generators.gemspec
-import gentle.generators.hpack
-import gentle.generators.npm
-import gentle.generators.nuspec
-import gentle.generators.pear
-import gentle.generators.pubspec
-import gentle.generators.python.pyproject
-import gentle.generators.python.setuptools
-import gentle.generators.python.pkg_info
-import gentle.generators.python.wheel
-import gentle.generators.shards
 
 _HAS_PORTAGE = importlib.util.find_spec("portage") is not None
 
@@ -80,8 +62,13 @@ def main() -> None:
             sys.exit(1)
 
         srcdir = src_unpack(args.ebuild, tmpdir)
-        cls: Type[AbstractGenerator]
-        for cls in AbstractGenerator.get_generator_subclasses():
+        for ep in importlib.metadata.entry_points(group="gentle.generators"):
+            cls = ep.load()
+            if not (isinstance(cls, type)
+                    and issubclass(cls, AbstractGenerator)):
+                logger.warning("Skipping unsuitable %s", cls.__name__)
+                continue
+
             generator = cls(srcdir)
             if not generator.active:
                 continue

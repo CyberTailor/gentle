@@ -8,6 +8,8 @@ Release Notes
 1.0.0-next
 ----------
 
+- Load generators from entry points instead of importing them at startup.
+
 *Generators changelog:*
 
 - **Python Wheel**:
@@ -18,6 +20,9 @@ Release Notes
 *Tests changelog:*
 
 - Add ``--net`` option back for real world Python Wheel tests.
+
+- Move boilerplate test code to a helper class, so writing and maintaining tests
+  should be easier.
 
 1.0.0
 -----
