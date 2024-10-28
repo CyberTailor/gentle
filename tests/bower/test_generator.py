@@ -1,41 +1,20 @@
 # SPDX-License-Identifier: WTFPL
-# SPDX-FileCopyrightText: 2023 Anna <cyber@sysrq.in>
+# SPDX-FileCopyrightText: 2023-2024 Anna <cyber@sysrq.in>
 # No warranty
 
-from copy import deepcopy
 from pathlib import Path
 
 import pytest
 
 from gentle.generators.bower import BowerGenerator
 from gentle.metadata import MetadataXML
-
-from tests.utils import compare_mxml
-
-
-def test_pkg_none(mxml: MetadataXML):
-    gen = BowerGenerator(Path(__file__).parent / "pkg_none")
-    assert not gen.active
+from tests.utils import BaseTestGenerator
 
 
-def test_pkg_empty(mxml: MetadataXML):
-    gen = BowerGenerator(Path(__file__).parent / "pkg_empty")
-    assert gen.active
+class TestBowerGenerator(BaseTestGenerator):
+    generator_cls = BowerGenerator
+    generator_data_dir = Path(__file__).parent
 
-    mxml_old = deepcopy(mxml)
-    gen.update_metadata_xml(mxml)
-    assert compare_mxml(mxml_old, mxml) == ""
-
-
-@pytest.mark.parametrize("dirname", ["aurelia"])
-def test_pkg(mxml: MetadataXML, dirname: str):
-    gen = BowerGenerator(Path(__file__).parent / dirname)
-    assert gen.active
-
-    gen.update_metadata_xml(mxml)
-    with open(Path(__file__).parent / dirname / "metadata.xml") as file:
-        assert mxml.dumps() == file.read().rstrip()
-
-    mxml_prev = deepcopy(mxml)
-    gen.update_metadata_xml(mxml)
-    assert compare_mxml(mxml_prev, mxml) == ""
+    @pytest.mark.parametrize("dirname", ["aurelia"])
+    def test_pkg(self, mxml: MetadataXML, dirname: str):
+        self._test_pkg(mxml, dirname)
