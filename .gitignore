@@ -11,7 +11,7 @@ dist
 
 Makefile
 MYMETA.*
-UNKNOWN.egg-info
+*.egg-info
 
 *.sw[op]
 *~

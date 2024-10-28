@@ -21,7 +21,7 @@ def test_pkg_none(mxml: MetadataXML):
 
 @pytest.mark.parametrize("dirname", ["pyproject.toml", "setup.cfg", "setup.py"])
 def test_pkg_empty(monkeypatch: pytest.MonkeyPatch, mxml: MetadataXML, dirname: str):
-    # calls to 'pip' can make this test fail
+    # subprocess calls can make this test fail
     def blackhole(*args, **kwargs):
         pass
     monkeypatch.setattr(build.env, "run_subprocess", blackhole)
@@ -32,3 +32,18 @@ def test_pkg_empty(monkeypatch: pytest.MonkeyPatch, mxml: MetadataXML, dirname: 
     mxml_old = deepcopy(mxml)
     gen.update_metadata_xml(mxml)
     assert compare_mxml(mxml_old, mxml) == ""
+
+
+@pytest.mark.net
+@pytest.mark.parametrize("dirname", ["rich", "commonmark"])
+def test_pkg(mxml: MetadataXML, dirname: str):
+    gen = WheelGenerator(Path(__file__).parent / dirname)
+    assert gen.active
+
+    gen.update_metadata_xml(mxml)
+    with open(Path(__file__).parent / dirname / "metadata.xml") as file:
+        assert mxml.dumps() == file.read().rstrip()
+
+    mxml_prev = deepcopy(mxml)
+    gen.update_metadata_xml(mxml)
+    assert compare_mxml(mxml_prev, mxml) == ""

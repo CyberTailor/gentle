@@ -15,6 +15,10 @@ Release Notes
   - Switch from :pypi:`pip` to :pypi:`uv` for installing build requirements
     (:gentoobug:`934922`).
 
+*Tests changelog:*
+
+- Add ``--net`` option back for real world Python Wheel tests.
+
 1.0.0
 -----
 

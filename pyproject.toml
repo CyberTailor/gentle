@@ -78,6 +78,7 @@ addopts = "--doctest-modules"
 [tool.mypy]
 disallow_untyped_defs = true
 no_implicit_optional = true
+exclude = "setup\\.py$"
 
 [[tool.mypy.overrides]]
 module = [

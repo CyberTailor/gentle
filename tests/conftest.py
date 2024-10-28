@@ -11,6 +11,8 @@ from gentle.pms.portagepm import parse_mxml
 
 
 def pytest_addoption(parser):
+    parser.addoption("--net", action="store_true",
+                     help="run tests that connect to network")
     parser.addoption("--with-perl", action="store_true",
                      help="run tests that require Perl")
     parser.addoption("--with-ruby", action="store_true",
@@ -18,11 +20,18 @@ def pytest_addoption(parser):
 
 
 def pytest_configure(config):
+    config.addinivalue_line("markers", "net: mark test as using network")
     config.addinivalue_line("markers", "perl: mark test as using Perl")
     config.addinivalue_line("markers", "ruby: mark test as using Ruby")
 
 
 def pytest_collection_modifyitems(config, items):
+    if not config.getoption("--net"):
+        skip_net = pytest.mark.skip(reason="need --net option to run")
+        for item in items:
+            if "net" in item.keywords:
+                item.add_marker(skip_net)
+
     if not config.getoption("--with-perl"):
         skip_perl = pytest.mark.skip(reason="need --with-perl option to run")
         for item in items:
