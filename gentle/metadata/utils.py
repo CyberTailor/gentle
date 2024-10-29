@@ -17,6 +17,8 @@ author_re = re.compile(r"(?P<name>.+?)\s*<(?P<email>.+?@.+?)>")
 remote_ids = {
     "bitbucket":
         re.compile(r"^https?://bitbucket.org/(?P<v>[^\s/]+?/[^\s/]+?)([.]git)?(/.*)?$"),
+    "codeberg":
+        re.compile(r"^https?://codeberg.org/(?P<v>[^\s/]+?/[^\s/]+?)([.]git)?(/.*)?$"),
     "cpan":
         re.compile(r"^https?://metacpan.org/dist/(?P<v>[^\s/]+?)(/.*)?$"),
     "cpan-module":

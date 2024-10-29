@@ -10,6 +10,8 @@ Release Notes
 
 - Load generators from entry points instead of importing them at startup.
 
+- Add ``codeberg`` to known remote-ids.
+
 *Generators changelog:*
 
 - **Python Wheel**:
