@@ -22,7 +22,7 @@ from gentle.metadata.utils import extract_remote_id
 
 try:
     import yaml
-    from yaml import CLoader
+    from yaml import CSafeLoader
     _HAS_PYYAML = True
 except ModuleNotFoundError:
     _HAS_PYYAML = False
@@ -36,7 +36,7 @@ class PubspecGenerator(AbstractGenerator):
 
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
         with open(self.pubspec_yml) as file:
-            if (pubspec := yaml.load(file, CLoader)) is None:
+            if (pubspec := yaml.load(file, CSafeLoader)) is None:
                 return
 
         if (issues := pubspec.get("issue_tracker")) is not None:

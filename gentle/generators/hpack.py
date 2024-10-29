@@ -22,7 +22,7 @@ from gentle.metadata.utils import extract_name_email, extract_remote_id
 
 try:
     import yaml
-    from yaml import CLoader
+    from yaml import CSafeLoader
     _HAS_PYYAML = True
 except ModuleNotFoundError:
     _HAS_PYYAML = False
@@ -36,7 +36,7 @@ class HpackGenerator(AbstractGenerator):
 
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
         with open(self.package_yaml) as file:
-            if (package := yaml.load(file, CLoader)) is None:
+            if (package := yaml.load(file, CSafeLoader)) is None:
                 package = {}
 
         maint_key = "maintainer"

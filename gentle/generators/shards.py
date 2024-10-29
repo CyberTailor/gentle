@@ -21,7 +21,7 @@ from gentle.metadata.utils import extract_name_email, extract_remote_id
 
 try:
     import yaml
-    from yaml import CLoader
+    from yaml import CSafeLoader
     _HAS_PYYAML = True
 except ModuleNotFoundError:
     _HAS_PYYAML = False
@@ -35,7 +35,7 @@ class ShardsGenerator(AbstractGenerator):
 
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
         with open(self.shard_yml) as file:
-            if (shard := yaml.load(file, CLoader)) is None:
+            if (shard := yaml.load(file, CSafeLoader)) is None:
                 return
 
         for author in map(extract_name_email, shard.get("authors", [])):

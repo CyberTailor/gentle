@@ -24,24 +24,28 @@ from gentle.metadata.utils import extract_remote_id
 
 try:
     import yaml
-    from yaml import Loader
+    from yaml import CSafeLoader
     _HAS_PYYAML = True
 
     class VersionTag(yaml.YAMLObject):
         """ Dummy version tag """
         yaml_tag = "!ruby/object:Gem::Version"
+        yaml_loader = CSafeLoader
 
     class RequirementTag(yaml.YAMLObject):
         """ Dummy requirement tag """
         yaml_tag = "!ruby/object:Gem::Requirement"
+        yaml_loader = CSafeLoader
 
     class DependencyTag(yaml.YAMLObject):
         """ Dummy dependency tag """
         yaml_tag = "!ruby/object:Gem::Dependency"
+        yaml_loader = CSafeLoader
 
     class SpecificationTag(yaml.YAMLObject):
         """ Dummy specification tag """
         yaml_tag = "!ruby/object:Gem::Specification"
+        yaml_loader = CSafeLoader
 except ModuleNotFoundError:
     _HAS_PYYAML = False
 
@@ -70,7 +74,7 @@ class GemspecGenerator(AbstractGenerator):
                                   check=False,
                                   capture_output=True).stdout
 
-        if (metadata := yaml.load(data, Loader)) is None:
+        if (metadata := yaml.load(data, CSafeLoader)) is None:
             return
 
         if metadata.homepage:

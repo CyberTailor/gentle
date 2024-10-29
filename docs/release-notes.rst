@@ -14,6 +14,8 @@ Release Notes
 
 *Generators changelog:*
 
+- Use a safe version of YAML loader.
+
 - **Python Wheel**:
 
   - Switch from :pypi:`pip` to :pypi:`uv` for installing build requirements
