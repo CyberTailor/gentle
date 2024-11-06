@@ -28,7 +28,7 @@ class AbstractGenerator(ABC):
         """
         Update metadata object in place.
 
-        :param mxml: :path:`metadata.xml` object
+        :param mxml: :file:`metadata.xml` object
         """
 
     @property
