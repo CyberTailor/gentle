@@ -66,9 +66,9 @@ emerge app-portage/gentle
 Packaging
 ---------
 
-You can track new releases using an [atom feed][atom] provided by GitHub.
+You can track new releases using an [RSS feed][rss] provided by PyPI.
 
-[atom]: https://github.com/cybertailor/gentle/releases.atom
+[rss]: https://pypi.org/rss/project/gentle-mxml/releases.xml
 
 
 Contributing

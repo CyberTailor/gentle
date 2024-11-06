@@ -5,6 +5,12 @@
 API Reference
 =============
 
+This API reference is aimed at people who wish to contribute to gentle.
+
+.. note::
+   Python API is not covered by SemVer policy for this project and can be
+   changed at any time.
+
 .. autosummary::
     :toctree: api
 

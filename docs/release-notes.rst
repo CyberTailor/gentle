@@ -5,6 +5,11 @@
 Release Notes
 =============
 
+.. note::
+   This project is following `SemVer 2.0.0 <https://semver.org/spec/v2.0.0.html>`_
+   for its CLI interface, meaning that only breaking command-line interface and
+   behavior changes will result in a major version bump.
+
 1.0.0-next
 ----------
 
