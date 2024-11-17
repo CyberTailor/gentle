@@ -4,7 +4,6 @@
 
 from copy import deepcopy
 from pathlib import Path
-from typing import Type
 
 import pytest
 from xmldiff.formatting import DiffFormatter
@@ -20,7 +19,7 @@ def compare_mxml(old: MetadataXML, new: MetadataXML) -> str:
 
 @pytest.mark.usefixtures("mxml")
 class BaseTestGenerator:
-    generator_cls: Type[AbstractGenerator]
+    generator_cls: type[AbstractGenerator]
     generator_data_dir: Path
 
     def test_pkg_none(self, mxml: MetadataXML):
