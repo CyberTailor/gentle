@@ -39,7 +39,7 @@ class CpanGenerator(AbstractGenerator):
         meta_json = self.meta_json
         if not self.meta_json.is_file() and self.makefile_pl.is_file():
             cmd = [str(self.perl), str(self.makefile_pl)]
-            subprocess.run(cmd, cwd=self.srcdir, check=False)
+            subprocess.run(cmd, cwd=self.srcdir, check=False)  # nosec B603
 
             meta_json = self.srcdir / "MYMETA.json"
 

@@ -36,7 +36,8 @@ class AutoconfGenerator(AbstractGenerator):
 
     def update_metadata_xml(self, mxml: MetadataXML) -> None:
         if not self.conf_sh.is_file() and self.conf_ac.is_file():
-            subprocess.run([str(self.autoconf)], cwd=self.srcdir, check=False)
+            subprocess.run([str(self.autoconf)],  # nosec B603
+                           cwd=self.srcdir, check=False)
 
         if not self.conf_sh.is_file():
             return

@@ -117,6 +117,15 @@ module = [
 ]
 ignore_missing_imports = true
 
+[tool.bandit]
+skips = [
+    "B404", # import_subprocess
+
+    "B320", # xml_bad_etree
+    "B406", # import_xml_sax
+    "B410", # import_lxml
+]
+
 [tool.bumpversion]
 current_version = "1.0.1"
 commit = true
@@ -134,3 +143,45 @@ filename = "docs/conf.py"
 filename = "docs/release-notes.rst"
 search = "{current_version}-next"
 replace = "{new_version}"
+
+[tool.tox]
+requires = ["tox>=4.21"]
+min_version = "4.21"
+env_list = ["3.11", "3.12", "3.13", "lint"]
+
+[tool.tox.env_run_base]
+description = "run the tests + mypy under {base_python}"
+ignore_errors = true
+deps = [
+    "lxml-stubs",
+    "mypy",
+    "types-PyYAML",
+]
+extras = [
+    "pkginfo",
+    "rdf",
+    "test",
+    "wheel",
+    "yaml",
+]
+commands = [
+    ["pytest", "-vv", "{tty:--color=yes}", "{posargs:--net}"],
+    ["mypy", "gentle", "tests"],
+]
+
+[tool.tox.env.lint]
+description = "run the linters"
+ignore_errors = true
+skip_install = true
+deps = [
+    "bandit",
+    "pycodestyle",
+    "pyflakes",
+    "reuse",
+]
+commands = [
+    ["reuse", "lint"],
+    ["pyflakes", "gentle", "tests"],
+    ["pycodestyle", "gentle", "tests"],
+    ["bandit", "-c", "pyproject.toml", "-r", "gentle"],
+]

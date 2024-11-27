@@ -68,7 +68,7 @@ class GemspecGenerator(AbstractGenerator):
         else:
             gemspec = self.gemspec_files[0]
             code = "print Gem::Specification.load(gets.chomp).to_yaml"
-            data = subprocess.run([str(self.ruby), "-e", code],
+            data = subprocess.run([str(self.ruby), "-e", code],  # nosec B603
                                   input=str(gemspec).encode(),
                                   cwd=self.srcdir,
                                   check=False,
