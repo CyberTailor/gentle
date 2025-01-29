@@ -1,4 +1,4 @@
-.. SPDX-FileCopyrightText: 2023-2024 Anna <cyber@sysrq.in>
+.. SPDX-FileCopyrightText: 2023-2025 Anna <cyber@sysrq.in>
 .. SPDX-License-Identifier: WTFPL
 .. No warranty.
 
@@ -10,8 +10,17 @@ Release Notes
    for its CLI interface, meaning that only breaking command-line interface and
    behavior changes will result in a major version bump.
 
+1.0.1-next
+---
+
+- Fix unpack with Portage 3.0.67 and higher.
+
+*Tests changelog:*
+
+- Update 1 test that started behaving differently.
+
 1.0.1
-----------
+-----
 
 - Load generators from entry points instead of importing them at startup.
 
