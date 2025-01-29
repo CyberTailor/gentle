@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: WTFPL
-# SPDX-FileCopyrightText: 2022-2023 Anna <cyber@sysrq.in>
+# SPDX-FileCopyrightText: 2022-2025 Anna <cyber@sysrq.in>
 # No warranty
 
 """
@@ -10,6 +10,7 @@ import logging
 import os
 import pwd
 import re
+import shlex
 from pathlib import Path
 
 import portage
@@ -38,7 +39,7 @@ def src_unpack(ebuild: Path, tmpdir: str) -> Path:
     if portdir not in portage.portdb.porttrees:
         portdir_overlay = portage.settings.get("PORTDIR_OVERLAY", "")
         os.environ["PORTDIR_OVERLAY"] = (
-            portdir_overlay + " " + portage._shell_quote(portdir)
+            portdir_overlay + " " + shlex.quote(portdir)
         )
 
         logger.info("Appending %s to PORTDIR_OVERLAY", portdir)
