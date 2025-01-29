@@ -10,7 +10,7 @@ Release Notes
    for its CLI interface, meaning that only breaking command-line interface and
    behavior changes will result in a major version bump.
 
-1.0.1-next
+1.0.2
 ---
 
 - Fix unpack with Portage 3.0.67 and higher.

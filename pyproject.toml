@@ -124,7 +124,7 @@ skips = [
 ]
 
 [tool.bumpversion]
-current_version = "1.0.1"
+current_version = "1.0.2"
 commit = true
 tag = true
 tag_name = "{new_version}"

@@ -13,7 +13,7 @@
 project = 'gentle'
 author = 'Anna <cyber@sysrq.in>'
 copyright = f'2022-2024, {author}'
-release = '1.0.1'
+release = '1.0.2'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
