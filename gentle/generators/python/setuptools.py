@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: WTFPL
-# SPDX-FileCopyrightText: 2023 Anna <cyber@sysrq.in>
+# SPDX-FileCopyrightText: 2023-2025 Anna <cyber@sysrq.in>
 # No warranty
 
 """
@@ -55,8 +55,8 @@ class SetuptoolsGenerator(AbstractGenerator):
                 logger.info("Found homepage: %s", url)
                 mxml.add_upstream_remote_id(remote_id)
 
-        for key_val in metadata.get("project_urls", "").strip().split("\n"):
-            key_val = [item.strip() for item in key_val.split("=", maxsplit=1)]
+        for key_val_str in metadata.get("project_urls", "").strip().split("\n"):
+            key_val = [item.strip() for item in key_val_str.split("=", maxsplit=1)]
             if len(key_val) != 2:
                 continue
 
