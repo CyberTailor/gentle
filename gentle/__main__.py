@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: WTFPL
-# SPDX-FileCopyrightText: 2022-2023 Anna <cyber@sysrq.in>
+# SPDX-FileCopyrightText: 2022-2025 Anna <cyber@sysrq.in>
 # No warranty
 
 import argparse
@@ -21,7 +21,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("main")
 
 
-def main() -> None:
+def run_gentle() -> None:
     """
     Parse command-line arguments and run the program.
     """
@@ -82,4 +82,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    run_gentle()

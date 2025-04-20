@@ -61,7 +61,7 @@ Issues = "https://bugs.sysrq.in/enter_bug.cgi?product=Software&component=gentle"
 Changelog = "https://gentle.sysrq.in/release-notes.html"
 
 [project.scripts]
-gentle = "gentle.__main__:main"
+gentle = "gentle.__main__:run_gentle"
 
 [project.entry-points."gentle.generators"]
 autoconf = "gentle.generators.autoconf:AutoconfGenerator"
