@@ -9,4 +9,11 @@ steps:
   - name: test
     image: fedorapython/fedora-python-tox:latest
     environment:
-      TOX_PARAMS: -- --net --with-perl --with-ruby
+      TOX_PARAMS: >-
+        --
+        --net
+        --with-perl
+        --with-ruby
+      DNF_INSTALL: >-
+        /usr/bin/perl
+        /usr/bin/ruby
