@@ -162,7 +162,7 @@ extras = [
     "yaml",
 ]
 commands = [
-    ["pytest", "-vv", "{tty:--color=yes}", "{posargs:--net}"],
+    ["pytest", "-vv", "{tty:--color=yes}", { replace = "posargs", default = ["--net"], extend = true }],
     ["mypy", "gentle", "tests"],
 ]
 
