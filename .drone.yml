@@ -17,3 +17,4 @@ steps:
       DNF_INSTALL: >-
         /usr/bin/perl
         /usr/bin/ruby
+        perl-ExtUtils-MakeMaker
