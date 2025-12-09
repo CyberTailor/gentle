@@ -10,6 +10,7 @@ steps:
     image: fedorapython/fedora-python-tox:latest
     environment:
       TOX_PARAMS: >-
+        -c pyproject.toml
         --
         --net
         --with-perl
